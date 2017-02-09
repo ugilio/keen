@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="it.cnr.istc.keen.sdk"
-      label="Keen SDK Feature "
+      label="Keen DDL support "
       version="1.0.0.qualifier">
 
    <requires>

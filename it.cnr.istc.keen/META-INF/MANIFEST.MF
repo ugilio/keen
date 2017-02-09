@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: it.cnr.istc.keen
-Bundle-Vendor: My Company
+Bundle-Vendor: PST
 Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: it.cnr.istc.keen; singleton:=true
 Bundle-ActivationPolicy: lazy
