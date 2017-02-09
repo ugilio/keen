@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.emf.ecore.protocol_parser">
+      <parser
+            class="it.cnr.istc.keen.siriusglue.virtualresource.VirtualFactory"
+            protocolName="virtual">
+      </parser>
+   </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="it.cnr.istc.keen.siriusglue.ExecutableExtensionFactory:it.cnr.istc.keen.siriusglue.synchronizer.Synchronizer">
+      </startup>
+   </extension>
+
+</plugin>

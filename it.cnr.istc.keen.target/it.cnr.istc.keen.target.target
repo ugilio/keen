@@ -11,6 +11,12 @@
 			<unit id="org.eclipse.xpand" version="0.0.0"/>
 			<unit id="org.eclipse.xtend" version="0.0.0"/>
 			<unit id="org.eclipse.xtend.typesystem.emf" version="0.0.0"/>
+<!-- For Xtext-Sirius glue: -->
+			<unit id="org.eclipse.emf.transaction" version="0.0.0"/>
+			<unit id="org.eclipse.emf.compare" version="0.0.0"/>
+			<unit id="org.eclipse.emf.compare.rcp" version="0.0.0"/>
+			<unit id="org.eclipse.sirius.common" version="0.0.0"/>
+			<unit id="org.eclipse.sirius.diagram.ui" version="0.0.0"/>
 			<repository location="http://download.eclipse.org/releases/neon/201612211000/"/>
 		</location>
 <!--
