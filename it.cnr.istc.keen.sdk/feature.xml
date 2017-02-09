@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="it.cnr.istc.keen.sdk"
+      label="Keen SDK Feature "
+      version="1.0.0.qualifier">
+
+   <requires>
+      <import feature="org.eclipse.xtext.runtime" version="2.10.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="it.cnr.istc.keen"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="it.cnr.istc.keen.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="it.cnr.istc.keen.ide"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

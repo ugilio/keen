@@ -1,0 +1,248 @@
+grammar it.cnr.istc.keen.Ddl hidden(WS, ML_COMMENT, SL_COMMENT)
+
+generate ddl "http://pst.istc.cnr.it/keen/Ddl"
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+
+Ddl		: domain=Domain (problem=Problem)? | problem=Problem;
+
+
+// Domain
+Domain	:
+	'DOMAIN' name=ID '{' (module=TemporalModule)? (elements+=DomainElement)* '}';
+
+TemporalModule:
+	'TEMPORAL_MODULE' name=ID '=' horizon=Range ',' start=INT ';';
+
+DomainElement:
+	ParType | ComponentType | Component | TimelineSynchronization;
+
+
+// Parameter types
+ParType	:
+	NumericParameterType | EnumerationParameterType;
+	
+NumericParameterType:
+	'PAR_TYPE' 'NumericParameterType' name=ID '=' range=URange ';';
+	
+EnumerationParameterType:
+	'PAR_TYPE' 'EnumerationParameterType' name=ID '='
+	'{' (values+=EnumLiteral (',' values+=EnumLiteral)*)? '}' ';';
+
+
+// Parameter constraints
+ParameterConstraint:
+	left=LValue op=AritComparisonOperator right=RValue;
+
+LValue		: (number=Number '*')? var=VarRef;
+RValue:  (first=LValue | number=Number | enumeration=[EnumLiteral]) ( ('+' | '-') ((INT '*')? vars+=VarRef | numbers+=INT) )*;
+
+enum AritComparisonOperator:
+	eq = '=' | neq = '!=' |
+	lt = '<' | leq = '<=' | gt = '>' | geq = '>=';
+
+
+// Component types
+ComponentType:
+	SimpleGroundStateVariableComponentType |
+	SingletonStateVariableComponentType |
+	RenewableResourceComponentType |
+	ConsumableResourceComponentType;
+	
+ComponentDecisionType:
+	SGSVComponentDecisionType |
+	SSVComponentDecisionType;
+	
+TransitionConstraint:
+	SGSVTransitionConstraint |
+	SSVTransitionConstraint;
+	
+// Simple Ground State Variable
+
+SimpleGroundStateVariableComponentType:
+	'COMP_TYPE' 'SimpleGroundStateVariable' name=ID
+	'(' (decTypes+=SGSVComponentDecisionType (',' decTypes+=SGSVComponentDecisionType)*)? ')'
+	'{' (transConstraint+=SGSVTransitionConstraint)* '}';
+
+SGSVComponentDecisionType:	name=ID '(' ')';
+
+SGSVTransitionConstraint:
+	'VALUE' value=SGSVComponentDecision Range
+	('MEETS' '{' (meets+=SGSVTransitionElement ';')* '}')?;
+
+SGSVTransitionElement:
+	SGSVComponentDecision;
+
+
+// Singleton State Variable
+SingletonStateVariableComponentType:
+	'COMP_TYPE' 'SingletonStateVariable' name=ID
+	'(' (decTypes+=SSVComponentDecisionType (',' decTypes+=SSVComponentDecisionType)*)? ')'
+	'{' (transConstraint+=SSVTransitionConstraint)* '}';
+
+SSVComponentDecisionType: name=ID '(' (args+=[ParType|ID] (',' args+=[ParType|ID])*)? ')';
+
+SSVTransitionConstraint:
+	'VALUE' value=SSVComponentDecision Range
+	'MEETS' '{' (meets+=SSVTransitionElement ';')* '}';
+
+SSVTransitionElement:
+	SSVComponentDecision | ParameterConstraint;
+
+
+// Renewable resource
+RenewableResourceComponentType:
+	'COMP_TYPE' 'RenewableResource' name=ID '(' value=PosNumber ')';
+
+
+// Consumable resource
+ConsumableResourceComponentType:
+	'COMP_TYPE' 'ConsumableResource' name=ID '(' val1=PosNumber ',' val2=PosNumber ')';
+
+
+// Components
+Component:
+	'COMPONENT' name=ID '{' (timelines+=Timeline)* '}' ':' (type=[ComponentType])? ';';
+
+Timeline: type=TimelineType name=ID '(' (params+=ID (',' params+=ID)*)? ')';
+
+enum TimelineType : 
+	FLEXIBLE | BOUNDED | ESTA_LIGHT | ESTA_LIGHT_MAX_CONSUMPTION;
+
+
+// Synchronizations
+
+TimelineSynchronization:
+	'SYNCHRONIZE' timeline=[Timeline|QualifiedName]
+	'{' (synchronizations+=Synchronization)* '}';
+
+Synchronization:
+	'VALUE' value=ComponentDecision
+	'{' (elements+=SynchronizationElement)* '}';
+
+
+// Component Decisions
+
+ComponentDecision:
+	SVComponentDecisionReference |
+	RenewableResourceComponentDecision |
+	ConsumableResourceComponentDecision;
+
+SVComponentDecisionReference:
+	('<' params+=Parameter (',' params+=Parameter)* '>')?
+	value=[ComponentDecisionType|ID]
+	'(' (paramValues+=ParValue (',' paramValues+=ParValue)*)? ')';
+
+SGSVComponentDecision:
+	('<' params+=Parameter (',' params+=Parameter)* '>')?
+	value=[SGSVComponentDecisionType|ID] '(' ')';
+
+SSVComponentDecision:
+	('<' params+=Parameter (',' params+=Parameter)* '>')?
+	value=[SSVComponentDecisionType|ID]
+	'(' (paramValues+=ParValue (',' paramValues+=ParValue)*)? ')';
+	
+RenewableResourceComponentDecision:
+	('<' params+=Parameter (',' params+=Parameter)* '>')?
+	'REQUIREMENT' '(' paramValue=ParValue ')';
+	
+ConsumableResourceComponentDecision
+	:	CRProductionComponentDecision | CRConsumptionComponentDecision;
+		
+CRProductionComponentDecision
+	:	('<' params+=Parameter (',' params+=Parameter)* '>')? 'PRODUCTION' '(' paramValue=ParValue ')';
+		
+CRConsumptionComponentDecision
+	:	('<' params+=Parameter (',' params+=Parameter)* '>')? 'CONSUMPTION' '(' paramValue=ParValue ')';
+
+
+// Synchronization elements
+
+SynchronizationElement:
+	InstantiatedComponentDecision ';' |
+	TemporalConstraint ';' |
+	ParameterConstraint ';';
+	
+InstantiatedComponentDecision:
+	name=ID ('<' params+=Parameter (',' params+=Parameter)* '>')?
+	timeline=[Timeline|QualifiedName2] '.' decision=ComponentDecision
+	('AT' range1=Range range2=Range range3=Range)?;
+	
+TemporalConstraint:
+	(from=[InstantiatedComponentDecision])? relType=TemporalRelationType to=[InstantiatedComponentDecision];
+	
+Parameter:	name=(ID | '!' | '?' | 'c' | 'u');
+
+ParValue:	name=VARID ('=' value=(Number|ID))?;
+	
+
+// Temporal relations
+TemporalRelationType
+	:'MEETS'
+	|'MET-BY'
+	|'BEFORE' Range
+	|'AFTER' Range
+	|'EQUALS'
+	|'STARTS'
+	|'STARTED-BY'
+	|'FINISHES'
+	|'FINISHED-BY'
+	|'DURING' Range Range
+	|'CONTAINS' Range Range
+	|'OVERLAPS' Range
+	|'OVERLAPPED-BY' Range
+	|'STARTS-AT'
+	|'ENDS-AT'
+	|'AT-START'
+	|'AT-END'
+	|'BEFORE-START' Range
+	|'AFTER-END' Range
+	|'START-START' Range
+	|'START-END' Range
+	|'END-START' Range
+	|'END-END' Range
+	|'CONTAINS-START' Range Range
+	|'CONTAINS-END' Range Range
+	|'STARTS-DURING' Range Range
+	|'ENDS-DURING' Range Range;
+	
+
+
+
+// Problem
+
+Problem		: 'PROBLEM' name=ID ('(' 'DOMAIN' domain=[Domain] ')')?
+	'{' (elements+=ProblemElement)* '}';
+
+ProblemElement:
+	InstantiatedComponentDecision ';' |
+	ProblemTemporalConstraint ';' |
+	ParameterConstraint ';';
+	
+ProblemTemporalConstraint:
+	from=[InstantiatedComponentDecision] TemporalRelationType to=[InstantiatedComponentDecision];
+
+VarRef : ref=[ParValue|VARID];
+EnumLiteral : name=ID;
+
+// Low-level stuff
+
+QualifiedName : ID('.'ID)*;
+QualifiedName2 : ID'.'ID;
+
+URange		: '[' lb=Number ',' ub=Number ']';
+Range		: '[' PosNumber ',' PosNumber ']';
+Number		: PosNumber | NegNumber;
+PosNumber returns ecore::EInt: ('+')? (INT |'INF');
+NegNumber returns ecore::EInt: '-' (INT |'INF');
+
+terminal VARID		: '?' ID;
+terminal ID  		: ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_'|'-'|'@')*;
+terminal INT returns ecore::EInt: ('0'..'9')+;
+terminal ML_COMMENT	: '/*' -> '*/';
+terminal SL_COMMENT 	: '//' !('\n'|'\r')* ('\r'? '\n')?;
+
+terminal WS			: (' '|'\t'|'\r'|'\n')+;
+
+terminal ANY_OTHER: .;
