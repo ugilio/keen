@@ -93,6 +93,8 @@ public class ResourceUpdater {
 		if (peer==null && peerURI.isPlatformResource())
 			peer=new ResourceSetImpl().getResource(peerURI, true);
 		
+		if (peer==null) //e.g. we only have an Xtext resource and no diagrams
+			return;
 		Resource peerRes = null;
 		IXtextDocument doc = null;
 		if (peer instanceof IXtextDocument) {
