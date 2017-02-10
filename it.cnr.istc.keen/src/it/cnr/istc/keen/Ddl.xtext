@@ -45,50 +45,26 @@ enum AritComparisonOperator:
 
 // Component types
 ComponentType:
-	SimpleGroundStateVariableComponentType |
-	SingletonStateVariableComponentType |
+	StateVariableComponentType |
 	RenewableResourceComponentType |
 	ConsumableResourceComponentType;
 	
-ComponentDecisionType:
-	SGSVComponentDecisionType |
-	SSVComponentDecisionType;
-	
+// State Variable Component Types
+StateVariableComponentType:
+	'COMP_TYPE' type=StateVariableType name=ID
+	'(' (decTypes+=ComponentDecisionType (',' decTypes+=ComponentDecisionType)*)? ')'
+	'{' (transConstraint+=TransitionConstraint)* '}';
+
+enum StateVariableType: SingletonStateVariable | SimpleGroundStateVariable;
+
+ComponentDecisionType: name=ID '(' (args+=[ParType|ID] (',' args+=[ParType|ID])*)? ')';
+
 TransitionConstraint:
-	SGSVTransitionConstraint |
-	SSVTransitionConstraint;
-	
-// Simple Ground State Variable
+	'VALUE' value=ComponentDecision Range
+	'MEETS' '{' (meets+=TransitionElement ';')* '}';
 
-SimpleGroundStateVariableComponentType:
-	'COMP_TYPE' 'SimpleGroundStateVariable' name=ID
-	'(' (decTypes+=SGSVComponentDecisionType (',' decTypes+=SGSVComponentDecisionType)*)? ')'
-	'{' (transConstraint+=SGSVTransitionConstraint)* '}';
-
-SGSVComponentDecisionType:	name=ID '(' ')';
-
-SGSVTransitionConstraint:
-	'VALUE' value=SGSVComponentDecision Range
-	('MEETS' '{' (meets+=SGSVTransitionElement ';')* '}')?;
-
-SGSVTransitionElement:
-	SGSVComponentDecision;
-
-
-// Singleton State Variable
-SingletonStateVariableComponentType:
-	'COMP_TYPE' 'SingletonStateVariable' name=ID
-	'(' (decTypes+=SSVComponentDecisionType (',' decTypes+=SSVComponentDecisionType)*)? ')'
-	'{' (transConstraint+=SSVTransitionConstraint)* '}';
-
-SSVComponentDecisionType: name=ID '(' (args+=[ParType|ID] (',' args+=[ParType|ID])*)? ')';
-
-SSVTransitionConstraint:
-	'VALUE' value=SSVComponentDecision Range
-	'MEETS' '{' (meets+=SSVTransitionElement ';')* '}';
-
-SSVTransitionElement:
-	SSVComponentDecision | ParameterConstraint;
+TransitionElement:
+	SVComponentDecision | ParameterConstraint;
 
 
 // Renewable resource
@@ -125,24 +101,15 @@ Synchronization:
 // Component Decisions
 
 ComponentDecision:
-	SVComponentDecisionReference |
+	SVComponentDecision |
 	RenewableResourceComponentDecision |
 	ConsumableResourceComponentDecision;
 
-SVComponentDecisionReference:
+SVComponentDecision:
 	('<' params+=Parameter (',' params+=Parameter)* '>')?
 	value=[ComponentDecisionType|ID]
 	'(' (paramValues+=ParValue (',' paramValues+=ParValue)*)? ')';
 
-SGSVComponentDecision:
-	('<' params+=Parameter (',' params+=Parameter)* '>')?
-	value=[SGSVComponentDecisionType|ID] '(' ')';
-
-SSVComponentDecision:
-	('<' params+=Parameter (',' params+=Parameter)* '>')?
-	value=[SSVComponentDecisionType|ID]
-	'(' (paramValues+=ParValue (',' paramValues+=ParValue)*)? ')';
-	
 RenewableResourceComponentDecision:
 	('<' params+=Parameter (',' params+=Parameter)* '>')?
 	'REQUIREMENT' '(' paramValue=ParValue ')';

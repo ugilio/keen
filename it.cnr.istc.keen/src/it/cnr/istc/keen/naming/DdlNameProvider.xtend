@@ -3,10 +3,8 @@ package it.cnr.istc.keen.naming
 import it.cnr.istc.keen.ddl.DdlPackage
 import it.cnr.istc.keen.ddl.ParameterConstraint
 import it.cnr.istc.keen.ddl.ProblemTemporalConstraint
-import it.cnr.istc.keen.ddl.SGSVComponentDecision
-import it.cnr.istc.keen.ddl.SGSVTransitionConstraint
-import it.cnr.istc.keen.ddl.SSVComponentDecision
-import it.cnr.istc.keen.ddl.SSVTransitionConstraint
+import it.cnr.istc.keen.ddl.SVComponentDecision
+import it.cnr.istc.keen.ddl.TransitionConstraint
 import it.cnr.istc.keen.ddl.Synchronization
 import it.cnr.istc.keen.ddl.TemporalConstraint
 import it.cnr.istc.keen.ddl.TimelineSynchronization
@@ -47,25 +45,14 @@ class DdlNameProvider {
 	
 	
 	//Example: VALUE Idle() [1, +INF]
-	protected def static dispatch doGetObjName(SGSVTransitionConstraint obj)
+	protected def static dispatch doGetObjName(TransitionConstraint obj)
 	{
-		return getTextContent(obj,DdlPackage.Literals.SGSV_TRANSITION_CONSTRAINT__VALUE);
-	}
-	
-	//Example: VALUE Idle() [1, +INF]
-	protected def static dispatch doGetObjName(SSVTransitionConstraint obj)
-	{
-		return getTextContent(obj,DdlPackage.Literals.SSV_TRANSITION_CONSTRAINT__VALUE);
+		return getTextContent(obj,DdlPackage.Literals.TRANSITION_CONSTRAINT__VALUE);
 	}
 
-	protected def static dispatch doGetObjName(SGSVComponentDecision obj)
+	protected def static dispatch doGetObjName(SVComponentDecision obj)
 	{
-		return getTextContent(obj,DdlPackage.Literals.SGSV_COMPONENT_DECISION__VALUE);
-	}
-	
-	protected def static dispatch doGetObjName(SSVComponentDecision obj)
-	{
-		return getTextContent(obj,DdlPackage.Literals.SSV_COMPONENT_DECISION__VALUE);
+		return getTextContent(obj,DdlPackage.Literals.SV_COMPONENT_DECISION__VALUE);
 	}
 	
 	//Example: SYNCHRONIZE RobotController.functions

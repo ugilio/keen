@@ -12,21 +12,17 @@
 	${Decision}())
 {
 	${cursor}
-}</template><template autoinsert="true" id="it.cnr.istc.keen.Ddl.Synchronization" context="it.cnr.istc.keen.Ddl.Synchronization" deleted="false" description="New synchronization" enabled="true" name="synchronization">VALUE ${value:CrossReference(SVComponentDecisionReference.value)}()
+}</template><template autoinsert="true" id="it.cnr.istc.keen.Ddl.Synchronization" context="it.cnr.istc.keen.Ddl.Synchronization" deleted="false" description="New synchronization" enabled="true" name="synchronization">VALUE ${value:CrossReference(SVComponentDecision.value)}()
 {
 	${cursor}
 }</template><template autoinsert="true" id="it.cnr.istc.keen.Ddl.TimelineSynchronization" context="it.cnr.istc.keen.Ddl.kw_SYNCHRONIZE" deleted="false" description="New synchronization group" enabled="true" name="synchronization group">SYNCHRONIZE ${timeline:CrossReference(Component.timeline)}
 {
-	VALUE ${value:CrossReference(SVComponentDecisionReference.value)}()
+	VALUE ${value:CrossReference(SVComponentDecision.value)}()
 	{
 		${cursor}
 	}
 }
-</template><template autoinsert="true" id="it.cnr.istc.keen.Ddl.TemporalModule" context="it.cnr.istc.keen.Ddl.kw_TEMPORAL_MODULE" deleted="false" description="Define a temporal module" enabled="true" name="TEMPORAL_MODULE">TEMPORAL_MODULE ${module} = [${origin}, ${horizon}], ${max_timepoints};</template><template autoinsert="true" id="it.cnr.istc.keen.Ddl.SSVTransitionConstraint" context="it.cnr.istc.keen.Ddl.SSVTransitionConstraint" deleted="false" description="New transition constraint" enabled="true" name="transition constraint">VALUE ${value:CrossReference(SSVComponentDecision.value)}() [1, +INF]
-MEETS {
-	${cursor}
-}
-</template><template autoinsert="true" id="it.cnr.istc.keen.Ddl.SGSVTransitionConstraint" context="it.cnr.istc.keen.Ddl.SGSVTransitionConstraint" deleted="false" description="New transition constraint" enabled="true" name="transition constraint">VALUE ${value:CrossReference(SGSVComponentDecision.value)}() [1, +INF]
+</template><template autoinsert="true" id="it.cnr.istc.keen.Ddl.TemporalModule" context="it.cnr.istc.keen.Ddl.kw_TEMPORAL_MODULE" deleted="false" description="Define a temporal module" enabled="true" name="TEMPORAL_MODULE">TEMPORAL_MODULE ${module} = [${origin}, ${horizon}], ${max_timepoints};</template><template autoinsert="true" id="it.cnr.istc.keen.Ddl.SSVTransitionConstraint" context="it.cnr.istc.keen.Ddl.TransitionConstraint" deleted="false" description="New transition constraint" enabled="true" name="transition constraint">VALUE ${value:CrossReference(ComponentDecision.value)}() [1, +INF]
 MEETS {
 	${cursor}
 }

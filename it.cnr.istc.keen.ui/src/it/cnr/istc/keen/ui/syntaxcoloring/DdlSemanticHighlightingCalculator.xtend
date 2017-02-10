@@ -10,7 +10,7 @@ import it.cnr.istc.keen.ddl.RValue
 import it.cnr.istc.keen.ddl.DdlPackage
 import it.cnr.istc.keen.ddl.Timeline
 import it.cnr.istc.keen.ddl.ParType
-import it.cnr.istc.keen.ddl.SSVComponentDecisionType
+import it.cnr.istc.keen.ddl.ComponentDecisionType
 import org.eclipse.emf.ecore.EStructuralFeature
 
 class DdlSemanticHighlightingCalculator extends DefaultSemanticHighlightingCalculator {
@@ -47,10 +47,10 @@ class DdlSemanticHighlightingCalculator extends DefaultSemanticHighlightingCalcu
 	}
 	
 	//Highlight parameter type references
-	protected dispatch def doHighlight(SSVComponentDecisionType object, IHighlightedPositionAcceptor acceptor) {
+	protected dispatch def doHighlight(ComponentDecisionType object, IHighlightedPositionAcceptor acceptor) {
 		if (!object.args.isEmpty())
 		{
-			highlightAllChildren(acceptor,object,DdlPackage.Literals.SSV_COMPONENT_DECISION_TYPE__ARGS,
+			highlightAllChildren(acceptor,object,DdlPackage.Literals.COMPONENT_DECISION_TYPE__ARGS,
 				DdlHighlightingConfiguration.PARAMETER_TYPE);
 		}
 		return true;

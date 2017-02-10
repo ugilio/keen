@@ -13,13 +13,11 @@ import it.cnr.istc.keen.services.DdlGrammarAccess.NegNumberElements;
 import it.cnr.istc.keen.services.DdlGrammarAccess.PosNumberElements;
 import it.cnr.istc.keen.services.DdlGrammarAccess.ProblemElements;
 import it.cnr.istc.keen.services.DdlGrammarAccess.RenewableResourceComponentTypeElements;
-import it.cnr.istc.keen.services.DdlGrammarAccess.SGSVTransitionConstraintElements;
-import it.cnr.istc.keen.services.DdlGrammarAccess.SSVTransitionConstraintElements;
-import it.cnr.istc.keen.services.DdlGrammarAccess.SimpleGroundStateVariableComponentTypeElements;
-import it.cnr.istc.keen.services.DdlGrammarAccess.SingletonStateVariableComponentTypeElements;
+import it.cnr.istc.keen.services.DdlGrammarAccess.StateVariableComponentTypeElements;
 import it.cnr.istc.keen.services.DdlGrammarAccess.SynchronizationElements;
 import it.cnr.istc.keen.services.DdlGrammarAccess.TimelineElements;
 import it.cnr.istc.keen.services.DdlGrammarAccess.TimelineSynchronizationElements;
+import it.cnr.istc.keen.services.DdlGrammarAccess.TransitionConstraintElements;
 
 public class DdlFormatter extends AbstractDeclarativeFormatter {
 
@@ -31,10 +29,8 @@ public class DdlFormatter extends AbstractDeclarativeFormatter {
 	protected void configure(DdlGrammarAccess ga, FormattingConfig c) {
 		configureGeneral(ga,c);
 		
-		configure(ga,ga.getSimpleGroundStateVariableComponentTypeAccess(),c);
-		configure(ga,ga.getSGSVTransitionConstraintAccess(),c);
-		configure(ga,ga.getSingletonStateVariableComponentTypeAccess(),c);
-		configure(ga,ga.getSSVTransitionConstraintAccess(),c);
+		configure(ga,ga.getStateVariableComponentTypeAccess(),c);
+		configure(ga,ga.getTransitionConstraintAccess(),c);
 		configure(ga,ga.getRenewableResourceComponentTypeAccess(),c);
 		configure(ga,ga.getConsumableResourceComponentTypeAccess(),c);
 		configure(ga,ga.getComponentAccess(),c);
@@ -105,10 +101,8 @@ public class DdlFormatter extends AbstractDeclarativeFormatter {
 		//Empty line between different domain elements
 		c.setLinewrap(2).between(dom.getElementsAssignment_4(),dom.getElementsAssignment_4());
 		//Empty line between transition constraints
-		SingletonStateVariableComponentTypeElements ssv = ga.getSingletonStateVariableComponentTypeAccess();
-		c.setLinewrap(2).between(ssv.getTransConstraintAssignment_7(),ssv.getTransConstraintAssignment_7());
-		SimpleGroundStateVariableComponentTypeElements sgsv = ga.getSimpleGroundStateVariableComponentTypeAccess();
-		c.setLinewrap(2).between(sgsv.getTransConstraintAssignment_7(),sgsv.getTransConstraintAssignment_7());
+		StateVariableComponentTypeElements sv = ga.getStateVariableComponentTypeAccess();
+		c.setLinewrap(2).between(sv.getTransConstraintAssignment_7(),sv.getTransConstraintAssignment_7());
 		//Empty line between synchronizations
 		TimelineSynchronizationElements ts = ga.getTimelineSynchronizationAccess();
 		c.setLinewrap(2).between(ts.getSynchronizationsAssignment_3(),ts.getSynchronizationsAssignment_3());
@@ -123,7 +117,7 @@ public class DdlFormatter extends AbstractDeclarativeFormatter {
 		c.setLinewrap(1,1,2).between(pe.getElementsAssignment_4(),pe.getElementsAssignment_4());
 	}
 	
-	protected void configure(DdlGrammarAccess ga, SimpleGroundStateVariableComponentTypeElements e, FormattingConfig c) {
+	protected void configure(DdlGrammarAccess ga, StateVariableComponentTypeElements e, FormattingConfig c) {
 		c.setLinewrap().before(e.getCOMP_TYPEKeyword_0());
 		c.setLinewrap().after(e.getLeftParenthesisKeyword_3());
 		c.setIndentationIncrement().after(e.getLeftParenthesisKeyword_3());
@@ -132,20 +126,7 @@ public class DdlFormatter extends AbstractDeclarativeFormatter {
 		c.setLinewrap().after(e.getRightParenthesisKeyword_5());
 	}
 
-	protected void configure(DdlGrammarAccess ga, SGSVTransitionConstraintElements e, FormattingConfig c) {
-		c.setLinewrap().before(e.getMEETSKeyword_3_0());
-	}
-
-	protected void configure(DdlGrammarAccess ga, SingletonStateVariableComponentTypeElements e, FormattingConfig c) {
-		c.setLinewrap().before(e.getCOMP_TYPEKeyword_0());
-		c.setLinewrap().after(e.getLeftParenthesisKeyword_3());
-		c.setIndentationIncrement().after(e.getLeftParenthesisKeyword_3());
-		c.setLinewrap().after(e.getCommaKeyword_4_1_0());
-		c.setIndentationDecrement().after(e.getRightParenthesisKeyword_5());
-		c.setLinewrap().after(e.getRightParenthesisKeyword_5());
-	}
-
-	protected void configure(DdlGrammarAccess ga, SSVTransitionConstraintElements e, FormattingConfig c) {
+	protected void configure(DdlGrammarAccess ga, TransitionConstraintElements e, FormattingConfig c) {
 		c.setLinewrap().before(e.getMEETSKeyword_3());
 	}
 

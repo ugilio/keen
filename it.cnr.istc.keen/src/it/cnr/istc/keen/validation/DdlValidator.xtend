@@ -8,18 +8,15 @@ import static it.cnr.istc.keen.ddl.DdlPackage.Literals.*;
 import it.cnr.istc.keen.ddl.Domain
 import org.eclipse.xtext.validation.Check
 import it.cnr.istc.keen.ddl.EnumerationParameterType
-import it.cnr.istc.keen.ddl.SimpleGroundStateVariableComponentType
-import it.cnr.istc.keen.ddl.SingletonStateVariableComponentType
-import it.cnr.istc.keen.ddl.SGSVTransitionConstraint
-import it.cnr.istc.keen.ddl.SSVTransitionConstraint
+import it.cnr.istc.keen.ddl.StateVariableComponentType
+import it.cnr.istc.keen.ddl.TransitionConstraint
 import it.cnr.istc.keen.ddl.Component
 import it.cnr.istc.keen.ddl.TimelineSynchronization
 import it.cnr.istc.keen.ddl.Synchronization
 import it.cnr.istc.keen.ddl.Problem
-import it.cnr.istc.keen.ddl.SSVComponentDecision
+import it.cnr.istc.keen.ddl.SVComponentDecision
 import org.eclipse.emf.ecore.EStructuralFeature
-import it.cnr.istc.keen.ddl.SVComponentDecisionReference
-import it.cnr.istc.keen.ddl.SSVComponentDecisionType
+import it.cnr.istc.keen.ddl.ComponentDecisionType
 import it.cnr.istc.keen.ddl.ParType
 import it.cnr.istc.keen.ddl.NumericParameterType
 import it.cnr.istc.keen.ddl.ParameterConstraint
@@ -28,7 +25,6 @@ import it.cnr.istc.keen.ddl.RenewableResourceComponentDecision
 import it.cnr.istc.keen.ddl.ConsumableResourceComponentDecision
 import java.util.Collections
 import org.eclipse.emf.ecore.EObject
-import it.cnr.istc.keen.ddl.SGSVComponentDecisionType
 import com.google.inject.Inject
 import it.cnr.istc.keen.conversion.NumberValueConverter
 import org.eclipse.xtext.conversion.ValueConverterException
@@ -36,6 +32,7 @@ import java.util.List
 import it.cnr.istc.keen.naming.DdlNameProvider
 import org.eclipse.xtext.EcoreUtil2
 import it.cnr.istc.keen.utils.DomainUtils
+import it.cnr.istc.keen.ddl.StateVariableType
 
 /**
  * This class contains custom validation rules. 
@@ -54,6 +51,7 @@ class DdlValidator extends AbstractDdlValidator {
 	public static val EMPTY_SYNCHRONIZATION = "emptySynchronization";
 	public static val MISSING_PROBLEM_DOMAIN = "missingProblemDomain";
 	
+	public static val SIMPLE_GROUND_PARAMETERS = "simpleGroundHasParameters";
 	public static val WRONG_NUMBER_PARAMETERS = "wrongNumberOfParameters";
 	public static val TYPE_MISMATCH = "typeMismatch";
 	public static val OUT_OF_RANGE = "outOfRange";
@@ -82,27 +80,15 @@ class DdlValidator extends AbstractDdlValidator {
 	}
 	
 	@Check
-	def checkCompTypeHasDecision(SimpleGroundStateVariableComponentType ct) {
+	def checkCompTypeHasDecision(StateVariableComponentType ct) {
 		if (ct.decTypes.isEmpty())
-			error("At least one decision must be specified",SIMPLE_GROUND_STATE_VARIABLE_COMPONENT_TYPE__DEC_TYPES,EMPTY_DECTYPES);
+			error("At least one decision must be specified",STATE_VARIABLE_COMPONENT_TYPE__DEC_TYPES,EMPTY_DECTYPES);
 	}
 	
 	@Check
-	def checkCompTypeHasDecision(SingletonStateVariableComponentType ct) {
-		if (ct.decTypes.isEmpty())
-			error("At least one decision must be specified",SINGLETON_STATE_VARIABLE_COMPONENT_TYPE__DEC_TYPES,EMPTY_DECTYPES);
-	}
-	
-	@Check
-	def checkEmptyTransitionConstraint(SGSVTransitionConstraint c) {
+	def checkEmptyTransitionConstraint(TransitionConstraint c) {
 		if (c.meets.isEmpty())
-			warning("Empty transition constraint",SGSV_TRANSITION_CONSTRAINT__MEETS,EMPTY_CONSTR_MEETS);
-	}
-	
-	@Check
-	def checkEmptyTransitionConstraint(SSVTransitionConstraint c) {
-		if (c.meets.isEmpty())
-			warning("Empty transition constraint",SSV_TRANSITION_CONSTRAINT__MEETS,EMPTY_CONSTR_MEETS);
+			warning("Empty transition constraint",TRANSITION_CONSTRAINT__MEETS,EMPTY_CONSTR_MEETS);
 	}
 	
 	@Check
@@ -137,6 +123,15 @@ class DdlValidator extends AbstractDdlValidator {
 
 
 
+	@Check
+	def checkSGSVZeroParameters(ComponentDecisionType cdt) {
+		val ctype = cdt.eContainer as StateVariableComponentType;
+		if (ctype != null && ctype.type==StateVariableType.SIMPLE_GROUND_STATE_VARIABLE)
+			if (cdt.args.size()!=0)
+				error("Decisions in SimpleGroundStateVariable types cannot have parameters",
+					COMPONENT_DECISION_TYPE__ARGS,0,SIMPLE_GROUND_PARAMETERS);
+	}
+
 	//Checks for valid number of parameters
 	
 	private def void checkWrongNumberOfParameters(int expected, int actual, EStructuralFeature feat) {
@@ -147,36 +142,22 @@ class DdlValidator extends AbstractDdlValidator {
 	}
 
 	@Check
-	def checkCDNumberParameters(SSVComponentDecision cd) {
+	def checkCDNumberParameters(SVComponentDecision cd) {
 		if (cd.value!=null)
-			checkWrongNumberOfParameters(cd.value.args.size(),cd.paramValues.size(),SSV_COMPONENT_DECISION__PARAM_VALUES);
-	}
-	
-	@Check
-	def checkCDNumberParameters(SVComponentDecisionReference cd) {
-		val orig = cd.value;
-		if (orig!=null) {
-			val expected = 
-				if (orig instanceof SSVComponentDecisionType)
-					(orig as SSVComponentDecisionType).args.size()
-				else 0;
-			checkWrongNumberOfParameters(expected,cd.paramValues.size(),SV_COMPONENT_DECISION_REFERENCE__PARAM_VALUES);
-		}
+			checkWrongNumberOfParameters(cd.value.args.size(),cd.paramValues.size(),SV_COMPONENT_DECISION__PARAM_VALUES);
 	}
 	
 	private def getFormalParamList(EObject c) {
 		val type = 
 			switch c {
-				SVComponentDecisionReference: c.value
-				SSVComponentDecision: c.value
+				SVComponentDecision: c.value
 				RenewableResourceComponentDecision, 
 				ConsumableResourceComponentDecision:  c
 			}
 		if (type==null) throw new AssertionError("Unknown class for formal parameter list");
 		val list = 
 			switch type {
-				SSVComponentDecisionType: type.args
-				SGSVComponentDecisionType: Collections.<ParType>emptyList()
+				ComponentDecisionType: type.args
 				RenewableResourceComponentDecision: null
 				ConsumableResourceComponentDecision:  null
 			}
@@ -186,8 +167,7 @@ class DdlValidator extends AbstractDdlValidator {
 	private def getActualParamList(EObject c) {
 		val parlist =
 			switch c {
-				SVComponentDecisionReference: c.paramValues
-				SSVComponentDecision: c.paramValues
+				SVComponentDecision: c.paramValues
 				RenewableResourceComponentDecision: Collections.singletonList(c.paramValue)
 				ConsumableResourceComponentDecision:  Collections.singletonList(c.paramValue)
 			} 
@@ -319,15 +299,9 @@ class DdlValidator extends AbstractDdlValidator {
 	}
 	
 	@Check
-	def checkUnique(SimpleGroundStateVariableComponentType type) {
-		checkDuplicateIdentifiers(type,SIMPLE_GROUND_STATE_VARIABLE_COMPONENT_TYPE__DEC_TYPES);
-		checkDuplicateIdentifiers(type,SIMPLE_GROUND_STATE_VARIABLE_COMPONENT_TYPE__TRANS_CONSTRAINT);
-	}
-	
-	@Check
-	def checkUnique(SingletonStateVariableComponentType type) {
-		checkDuplicateIdentifiers(type,SINGLETON_STATE_VARIABLE_COMPONENT_TYPE__DEC_TYPES);
-		checkDuplicateIdentifiers(type,SINGLETON_STATE_VARIABLE_COMPONENT_TYPE__TRANS_CONSTRAINT);
+	def checkUnique(StateVariableComponentType type) {
+		checkDuplicateIdentifiers(type,STATE_VARIABLE_COMPONENT_TYPE__DEC_TYPES);
+		checkDuplicateIdentifiers(type,STATE_VARIABLE_COMPONENT_TYPE__TRANS_CONSTRAINT);
 	}
 	
 	@Check

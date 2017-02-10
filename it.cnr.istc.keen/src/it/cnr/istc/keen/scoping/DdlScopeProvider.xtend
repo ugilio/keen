@@ -5,7 +5,7 @@ package it.cnr.istc.keen.scoping
 
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
-import it.cnr.istc.keen.ddl.SVComponentDecisionReference
+import it.cnr.istc.keen.ddl.SVComponentDecision
 import it.cnr.istc.keen.ddl.DdlPackage
 import org.eclipse.xtext.EcoreUtil2
 import it.cnr.istc.keen.ddl.TimelineSynchronization
@@ -41,8 +41,8 @@ class DdlScopeProvider extends AbstractDdlScopeProvider {
 		 *   a) VALUE >>>RemoveTopCover(?piece)<<<
 		 *   b) Human.operator.>>>_Unscrew(?piece0, ?location0)<<<;
 		 */
-		if (context instanceof SVComponentDecisionReference
-			&& reference == DdlPackage.Literals.SV_COMPONENT_DECISION_REFERENCE__VALUE)
+		if (context instanceof SVComponentDecision
+			&& reference == DdlPackage.Literals.SV_COMPONENT_DECISION__VALUE)
 		{
 			//are we in a instantiated component decision? (<timeline>.<reference>)
 			val icd = EcoreUtil2.getContainerOfType(context,InstantiatedComponentDecision);
