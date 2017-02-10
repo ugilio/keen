@@ -25,6 +25,9 @@ public class DiagramModificationListener extends ModificationListener {
 		this.saveListener = saveListener;
 	}
 	
+	private CountingListenerList<ResourceSetListener> changeListeners =
+			new CountingListenerList<>();
+
 	public void editorOpened(DDiagramEditor editor) {
 		URI uri = null;
 		VirtualResource vres = ResourceUtils.getVirtualResourceForEditor(editor);
@@ -37,7 +40,8 @@ public class DiagramModificationListener extends ModificationListener {
 					editor.getSession().getTransactionalEditingDomain();
 			if (ted!=null) {
 				saveListener.registerSiriusNotification(ted);
-				ted.addResourceSetListener(diagramChangeListener);
+				if (changeListeners.offer(ted, diagramChangeListener))
+					ted.addResourceSetListener(diagramChangeListener);
 			}
 			editorActivated(editor);
 		}
@@ -51,7 +55,8 @@ public class DiagramModificationListener extends ModificationListener {
 		TransactionalEditingDomain ted = 
 				editor.getSession().getTransactionalEditingDomain();
 		if (ted!=null) {
-			ted.removeResourceSetListener(diagramChangeListener);
+			if (changeListeners.take(ted, diagramChangeListener))
+				ted.removeResourceSetListener(diagramChangeListener);
 			saveListener.unregisterSiriusNotification(ted);
 		}
 	}	
