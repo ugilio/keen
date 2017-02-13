@@ -1,4 +1,16 @@
-//Inspired by DefaultDependentElementsCalculator from Xtext 2.10
+/*
+ * Copyright (c) 2016-2017 PST (http://istc.cnr.it/group/pst).
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Giulio Bernardi
+ *   Jan Koehnlein (itemis AG) - Initial contribution and API
+ *   
+ * Inspired by org.eclipse.xtext.ui.refactoring.impl.DefaultDependentElementsCalculator from Xtext 2.10
+ */
 package it.cnr.istc.keen.ui.refactoring;
 
 import java.util.Iterator;

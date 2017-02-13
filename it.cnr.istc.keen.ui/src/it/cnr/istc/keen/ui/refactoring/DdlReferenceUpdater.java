@@ -1,5 +1,3 @@
-//Copied from DefaultReferenceUpdater from Xtext 2.10.0
-
 /*******************************************************************************
  * Copyright (c) 2010 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
@@ -7,6 +5,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *******************************************************************************/
+//Copied from org.eclipse.xtext.ui.refactoring.impl.DefaultReferenceUpdater from Xtext 2.10.0
 package it.cnr.istc.keen.ui.refactoring;
 
 import static org.eclipse.ltk.core.refactoring.RefactoringStatus.*;
