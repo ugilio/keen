@@ -96,8 +96,10 @@ public class DdlFormatter extends AbstractDeclarativeFormatter {
 		}
 		
 		//No space around dots
-		for (Keyword e: ga.findKeywords("."))
+		for (Keyword e: ga.findKeywords(".")) {
 			c.setNoSpace().before(e);
+			c.setNoSpace().after(e);
+		}
 		
 		//one space around comparison operators?
 		
