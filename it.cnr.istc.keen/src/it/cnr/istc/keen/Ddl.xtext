@@ -24,7 +24,7 @@ Domain	:
 	'DOMAIN' name=ID '{' (module=TemporalModule)? (elements+=DomainElement)* '}';
 
 TemporalModule:
-	'TEMPORAL_MODULE' name=ID '=' horizon=Range ',' start=INT ';';
+	'TEMPORAL_MODULE' name=ID '=' '[' origin=PosNumber ',' horizon=PosNumber ']' ',' timePoints=INT ';';
 
 DomainElement:
 	ParType | ComponentType | Component | TimelineSynchronization;
