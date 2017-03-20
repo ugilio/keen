@@ -71,7 +71,7 @@ enum StateVariableType: SingletonStateVariable | SimpleGroundStateVariable;
 ComponentDecisionType: name=ID '(' (args+=[ParType|ID] (',' args+=[ParType|ID])*)? ')';
 
 TransitionConstraint:
-	'VALUE' value=ComponentDecision Range
+	'VALUE' value=SVComponentDecision range=Range
 	'MEETS' '{' (meets+=TransitionElement ';')* '}';
 
 TransitionElement:
