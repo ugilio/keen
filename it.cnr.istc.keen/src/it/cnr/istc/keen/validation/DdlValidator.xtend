@@ -317,9 +317,4 @@ class DdlValidator extends AbstractDdlValidator {
 	def checkUnique(Component c) {
 		checkDuplicateIdentifiers(c,COMPONENT__TIMELINES);
 	}
-	
-	@Check
-	def checkUnique(TimelineSynchronization ts) {
-		checkDuplicateIdentifiers(ts,TIMELINE_SYNCHRONIZATION__SYNCHRONIZATIONS);
-	}
 }

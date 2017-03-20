@@ -10,14 +10,23 @@
  */
 package it.cnr.istc.keen.utils
 
-import org.eclipse.emf.ecore.EObject
 import com.google.inject.Inject
-import org.eclipse.xtext.resource.IResourceDescriptionsProvider
+import it.cnr.istc.keen.ddl.CRConsumptionComponentDecision
+import it.cnr.istc.keen.ddl.CRProductionComponentDecision
+import it.cnr.istc.keen.ddl.Component
+import it.cnr.istc.keen.ddl.ComponentDecision
+import it.cnr.istc.keen.ddl.Domain
+import it.cnr.istc.keen.ddl.RenewableResourceComponentDecision
+import it.cnr.istc.keen.ddl.SVComponentDecision
+import it.cnr.istc.keen.ddl.Timeline
+import java.security.InvalidParameterException
 import java.util.Collections
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.resource.IEObjectDescription
+import org.eclipse.xtext.resource.IResourceDescriptionsProvider
 
 class DomainUtils {
-	private static final String DOMAINCLASSNAME = it.cnr.istc.keen.ddl.Domain.getSimpleName();
+	private static final String DOMAINCLASSNAME = Domain.getSimpleName();
 
 	@Inject
 	private IResourceDescriptionsProvider resDescProvider;

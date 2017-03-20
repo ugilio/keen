@@ -12,22 +12,20 @@
  */
 package it.cnr.istc.keen.formatting2
 
-import static it.cnr.istc.keen.ddl.DdlPackage.Literals.*; 
-
-import com.google.inject.Inject
 import it.cnr.istc.keen.ddl.Ddl
 import it.cnr.istc.keen.ddl.Domain
 import it.cnr.istc.keen.ddl.DomainElement
-import it.cnr.istc.keen.services.DdlGrammarAccess
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
+
+import static it.cnr.istc.keen.ddl.DdlPackage.Literals.*
 
 /**
  * Disabled due to https://bugs.eclipse.org/bugs/show_bug.cgi?id=485118
  */
 class DdlFormatter extends AbstractFormatter2 {
 	
-	@Inject extension DdlGrammarAccess
+//	@Inject extension DdlGrammarAccess
 
 	def dispatch void format(Ddl ddl, extension IFormattableDocument document) {
 		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
