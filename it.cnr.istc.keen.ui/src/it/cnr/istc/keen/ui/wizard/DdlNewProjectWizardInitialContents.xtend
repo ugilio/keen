@@ -36,9 +36,9 @@ class DdlNewProjectWizardInitialContents {
 				//Component types
 				
 				COMP_TYPE SingletonStateVariable NewComponentType (
-					Decision1())
+					Value1())
 				{
-					VALUE Decision1() [1, +INF]
+					VALUE Value1() [1, +INF]
 					MEETS {
 						//Insert type constraints here...
 					}
@@ -52,7 +52,7 @@ class DdlNewProjectWizardInitialContents {
 				
 				SYNCHRONIZE NewComponent.timeline
 				{
-					VALUE Decision1() 
+					VALUE Value1() 
 					{
 						//Insert timeline constraints here...
 					}

@@ -89,9 +89,9 @@ class DdlValidator extends AbstractDdlValidator {
 	}
 	
 	@Check
-	def checkCompTypeHasDecision(StateVariableComponentType ct) {
+	def checkCompTypeHasValue(StateVariableComponentType ct) {
 		if (ct.decTypes.isEmpty())
-			error("At least one decision must be specified",STATE_VARIABLE_COMPONENT_TYPE__DEC_TYPES,EMPTY_DECTYPES);
+			error("At least one value must be specified",STATE_VARIABLE_COMPONENT_TYPE__DEC_TYPES,EMPTY_DECTYPES);
 	}
 	
 	@Check
@@ -137,7 +137,7 @@ class DdlValidator extends AbstractDdlValidator {
 		val ctype = cdt.eContainer as StateVariableComponentType;
 		if (ctype != null && ctype.type==StateVariableType.SIMPLE_GROUND_STATE_VARIABLE)
 			if (cdt.args.size()!=0)
-				error("Decisions in SimpleGroundStateVariable types cannot have parameters",
+				error("Values in SimpleGroundStateVariable types cannot have parameters",
 					COMPONENT_DECISION_TYPE__ARGS,0,SIMPLE_GROUND_PARAMETERS);
 	}
 
