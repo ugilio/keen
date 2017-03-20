@@ -38,5 +38,26 @@ class DomainUtils {
 			return Collections.<IEObjectDescription>emptyList();
 		var all = resDescProvider.getResourceDescriptions(rs);
 		return all.exportedObjects.filter[o|o.EClass.name.equals(DOMAINCLASSNAME)];
+	}
+
+	public static def getFullDecisionName(ComponentDecision dec, Timeline tml) {
+		val comp = tml.eContainer() as Component;
+		var name = comp.getName()+"."+tml.getName()+".";
+		if (dec instanceof SVComponentDecision) {
+			val svdec = dec as SVComponentDecision;
+			name+=svdec.getValue().getName();
+		}
+		else if (dec instanceof RenewableResourceComponentDecision) {
+			name+="REQUIREMENT";
+		}
+		else if (dec instanceof CRProductionComponentDecision) {
+			name+="PRODUCTION";
+		} else if (dec instanceof CRConsumptionComponentDecision) {
+			name+="CONSUMPTION";
+		}
+		else
+		throw new InvalidParameterException("Unknown Component Decision: "+
+				dec.getClass().getName());
+		return name;
 	}	
 }
