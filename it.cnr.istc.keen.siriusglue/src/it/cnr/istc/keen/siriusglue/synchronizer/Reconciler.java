@@ -10,6 +10,8 @@
  */
 package it.cnr.istc.keen.siriusglue.synchronizer;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.Comparison;
@@ -38,9 +40,12 @@ public class Reconciler {
 	
 	private ResourceTracker resourceTracker;
 
+	private CrossReferenceUpdater crossReferenceUpdater;
+
 	@Inject
 	public Reconciler(ResourceTracker resourceTracker) {
 		this.resourceTracker = resourceTracker;
+		this.crossReferenceUpdater = new CrossReferenceUpdater();
 	}
 
 	void updateIfPeerWasModified(Resource res, URI peerURI, IEditorPart editor) {
@@ -94,10 +99,15 @@ public class Reconciler {
 				IComparisonScope scope = new DefaultComparisonScope(outdatedResource, modifiedResource, null);
 				final Comparison comparison = EMFCompare.builder().build().compare(scope);
 
+				Collection<SettingExt> toRefresh =
+						crossReferenceUpdater.getObjectsToRefresh(comparison.getDifferences());
+
 				IMerger.Registry mergerRegistry = EMFCompareRCPPlugin.getDefault().getMergerRegistry();
 				final IBatchMerger merger = new BatchMerger(mergerRegistry);
 
 				merger.copyAllRightToLeft(comparison.getDifferences(), new BasicMonitor());
+
+				crossReferenceUpdater.refreshReferences(toRefresh);
 			}
 		});
 	}
