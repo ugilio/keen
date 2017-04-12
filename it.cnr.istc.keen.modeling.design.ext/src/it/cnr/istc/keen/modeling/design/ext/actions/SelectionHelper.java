@@ -91,8 +91,11 @@ public class SelectionHelper {
 				obj = ((IGraphicalEditPart)obj).getModel();
 			if (obj instanceof View)
 				obj = ((View)obj).getElement();
-			if (obj instanceof DSemanticDecorator)
-				return getResourceContext(((DSemanticDecorator)obj).getTarget().eResource().getURI());
+			if (obj instanceof DSemanticDecorator) {
+				EObject target = ((DSemanticDecorator)obj).getTarget();
+				if (target != null && target.eResource() != null)
+					return getResourceContext(target.eResource().getURI());
+			}
 		}
 		return null;
 	}

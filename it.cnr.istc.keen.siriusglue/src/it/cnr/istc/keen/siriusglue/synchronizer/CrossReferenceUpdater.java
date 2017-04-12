@@ -63,7 +63,11 @@ public class CrossReferenceUpdater {
 				continue;
 			EObject before = diff.getMatch().getLeft();
 			//EObject after = diff.getMatch().getRight();
-			addAllXref(before, toRefresh);
+
+			//Left can be null if there is a changeset involving links to a newly created object,
+			//that still doesn't exist
+			if (before!=null)
+				addAllXref(before, toRefresh);
 		}
 		int oldCount = 0;
 		int count = toRefresh.size();
