@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  <extension point="org.eclipse.sirius.componentization">
+    <component class="it.cnr.istc.keen.modeling.design.Activator"
+               id="it.cnr.istc.keen.modeling.design"
+	       name="Ddl">
+    </component>
+  </extension>
+</plugin>

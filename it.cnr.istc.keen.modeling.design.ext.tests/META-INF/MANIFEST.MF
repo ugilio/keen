@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: it.cnr.istc.keen.modeling.design.ext.tests
+Bundle-Vendor: PST
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: it.cnr.istc.keen.modeling.design.ext.tests; singleton:=true
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.junit;bundle-version="4.12.0",
+ org.hamcrest.core;bundle-version="1.3.0",
+ it.cnr.istc.keen.modeling.design.ext;bundle-version="1.0.0"

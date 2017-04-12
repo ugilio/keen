@@ -1,0 +1,845 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:properties="http://www.eclipse.org/sirius/properties/1.0.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="Ddl" version="11.1.1.201610211630">
+  <ownedViewpoints name="ddl" label="ddl" modelFileExtension="ddl">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="rootModel" label="Main View" titleExpression="Main View" domainClass="ddl.Ddl" enablePopupBars="true">
+      <metamodel href="http://pst.istc.cnr.it/keen/Ddl#/"/>
+      <defaultLayer name="Default">
+        <edgeMappings name="temporalModuleRelation" sourceMapping="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='rootModel']/@defaultLayer/@containerMappings[name='domain']" targetMapping="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='rootModel']/@defaultLayer/@containerMappings[name='temporalModule']" targetFinderExpression="feature:module">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="domain" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='rootModel']/@defaultLayer/@toolSections.1/@ownedTools[name='deleteDomain']" labelDirectEdit="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='editNameLabel']" semanticCandidatesExpression="feature:domain" domainClass="ddl.Domain" childrenPresentation="HorizontalStack">
+          <subContainerMappings name="domModelContainer" label="  Domain Model  " semanticCandidatesExpression="var:self" doubleClickDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='rootModel']/@defaultLayer/@toolSections.1/@ownedTools[name='domDblClick']" domainClass="ddl.Domain">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="Domain Model" backgroundColor="//@userColorsPalettes[name=null]/@entries[name='block_bg']" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='block_fg']">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+          </subContainerMappings>
+          <subContainerMappings name="compDiagramContainer" label="  Component Diagram  " semanticCandidatesExpression="var:self" doubleClickDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='rootModel']/@defaultLayer/@toolSections.1/@ownedTools[name='compDblClick']" domainClass="ddl.Domain">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="Component Diagram" backgroundColor="//@userColorsPalettes[name=null]/@entries[name='block_bg']" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='block_fg']">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+          </subContainerMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="10" iconPath="/it.cnr.istc.keen.ui/icons/domain.png" roundedCorner="true" backgroundColor="//@userColorsPalettes[name=null]/@entries[name='block_bg']" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='block_fg']">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </containerMappings>
+        <containerMappings name="temporalModule" labelDirectEdit="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='editNameLabel']" semanticCandidatesExpression="aql:self.domain.module" domainClass="ddl.TemporalModule" childrenPresentation="List">
+          <subNodeMappings name="originNode" labelDirectEdit="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='rootModel']/@defaultLayer/@toolSections.1/@ownedTools[name='editTMorigin']" semanticCandidatesExpression="var:self" domainClass="ddl.TemporalModule">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'origin: '+self.origin" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="horizonNode" labelDirectEdit="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='rootModel']/@defaultLayer/@toolSections.1/@ownedTools[name='editTMhorizon']" semanticCandidatesExpression="var:self" domainClass="ddl.TemporalModule">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'horizon: '+self.horizon" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="timePointsNode" labelDirectEdit="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='rootModel']/@defaultLayer/@toolSections.1/@ownedTools[name='editTMtimepoints']" semanticCandidatesExpression="var:self" domainClass="ddl.TemporalModule">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'time points: '+self.timePoints" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" iconPath="/it.cnr.istc.keen.ui/icons/module.png" backgroundColor="//@userColorsPalettes[name=null]/@entries[name='block_bg']" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='block_fg']">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </containerMappings>
+        <toolSections name="createSection" label="Tools">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="domainCreation" label="Domain" precondition="aql:container.oclAsType(ddl::Ddl).domain==null" containerMappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='rootModel']/@defaultLayer/@containerMappings[name='domain']" iconPath="/it.cnr.istc.keen.ui/icons/domain.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="ddl.Domain" referenceName="domain">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="NewDomain"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="temporalModuleCreation" label="Temporal Module" precondition="aql:container.oclAsType(ddl::Ddl).domain.module==null" containerMappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='rootModel']/@defaultLayer/@containerMappings[name='temporalModule']" iconPath="/it.cnr.istc.keen.ui/icons/module.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container.domain">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="ddl.TemporalModule" referenceName="module">
+                  <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:instance">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="origin" valueExpression="0"/>
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="horizon" valueExpression="100"/>
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="timePoints" valueExpression="100"/>
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="temporal_module"/>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="mainHiddenSection">
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="deleteDomain">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:element.eContainer()">
+                <subModelOperations xsi:type="tool_1:Unset" featureName="domain"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="domDblClick" mappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='rootModel']/@defaultLayer/@containerMappings[name='domain']/@subContainerMappings[name='domModelContainer']">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool:Navigation" createIfNotExistent="true" diagramDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="compDblClick" mappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='rootModel']/@defaultLayer/@containerMappings[name='domain']/@subContainerMappings[name='compDiagramContainer']">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool:Navigation" createIfNotExistent="true" diagramDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='componentDiagram']"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DirectEditLabel" name="editTMorigin">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:SetValue" featureName="origin" valueExpression="aql:arg0.parseNumProp()"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DirectEditLabel" name="editTMhorizon">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:SetValue" featureName="horizon" valueExpression="aql:arg0.parseNumProp()"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DirectEditLabel" name="editTMtimepoints">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:SetValue" featureName="timePoints" valueExpression="aql:arg0.parseNumProp()"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="DomainModel" label="Domain Model" titleExpression="Domain Model" domainClass="ddl.Domain" enablePopupBars="true">
+      <metamodel href="http://pst.istc.cnr.it/keen/Ddl#/"/>
+      <defaultLayer name="Default">
+        <toolSections name="hiddenSection">
+          <ownedTools xsi:type="tool:DirectEditLabel" name="editNameLabel">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.uniqueName(arg0)"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DirectEditLabel" name="editCdType">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:self">
+                <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.setCdTypeArgs(arg0)"/>
+                <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.uniqueName(self.parseFunctionName(arg0))"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DirectEditLabel" name="editURange">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.parseURange(arg0)"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DirectEditLabel" name="editRRvalue">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:SetValue" featureName="value" valueExpression="aql:arg0.parseNumProp()"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DirectEditLabel" name="editCRvalueMin">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:SetValue" featureName="val1" valueExpression="aql:arg0.parseNumProp()"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DirectEditLabel" name="editCRvalueMax">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:SetValue" featureName="val2" valueExpression="aql:arg0.parseNumProp()"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="typeDblClick" mappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@additionalLayers[name='stateVariablesLayer']/@containerMappings[name='SVType']">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:Navigation" createIfNotExistent="true" diagramDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='TypeConstraints']"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="forbiddenDelete" precondition="aql:false">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:self"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="standardDelete" precondition="aql:true">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:element.delete()"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+      <additionalLayers name="stateVariablesLayer" label="State Variables" activeByDefault="true">
+        <containerMappings name="SVType" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='standardDelete']" labelDirectEdit="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='editNameLabel']" semanticCandidatesExpression="feature:elements" doubleClickDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='typeDblClick']" domainClass="ddl.StateVariableComponentType" childrenPresentation="List">
+          <subNodeMappings name="CdType" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='standardDelete']" labelDirectEdit="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='editCdType']" semanticCandidatesExpression="feature:decTypes" domainClass="ddl.ComponentDecisionType">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:self.name+'('+self.args->collect(a|a.name)->sep(', ')->toString()+')'" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="10" iconPath="/it.cnr.istc.keen.modeling.design/icons/statevariable.png" roundedCorner="true" backgroundColor="//@userColorsPalettes[name=null]/@entries[name='block_bg']" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='block_fg']">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </containerMappings>
+        <toolSections name="typesSection" label="Create Type">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="createCdType" label="State Variable" containerMappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@additionalLayers[name='stateVariablesLayer']/@containerMappings[name='SVType']" iconPath="/it.cnr.istc.keen.modeling.design/icons/statevariable.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="ddl.StateVariableComponentType" referenceName="elements">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'StateVariableType'+container.elements->filter(ddl::StateVariableComponentType)->size()"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="type" valueExpression="ddl::StateVariableType::SingletonStateVariable"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="createSV" label="State Variable">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createDomCdType" label="Value" nodeMappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@additionalLayers[name='stateVariablesLayer']/@containerMappings[name='SVType']/@subNodeMappings[name='CdType']" iconPath="/it.cnr.istc.keen.ui/icons/decisiontype.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="ddl.ComponentDecisionType" referenceName="decTypes">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'Value'+container.decTypes->size()"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </additionalLayers>
+      <additionalLayers name="resourcesLayer" label="Resources" activeByDefault="true">
+        <containerMappings name="RRType" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='standardDelete']" labelDirectEdit="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='editNameLabel']" semanticCandidatesExpression="feature:elements" domainClass="ddl.RenewableResourceComponentType" childrenPresentation="List">
+          <subNodeMappings name="RRvalue" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='forbiddenDelete']" labelDirectEdit="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='editRRvalue']" semanticCandidatesExpression="var:self" domainClass="ddl.RenewableResourceComponentType">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'value: '+self.value" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="10" iconPath="/it.cnr.istc.keen.modeling.design/icons/renewable.png" roundedCorner="true" backgroundColor="//@userColorsPalettes[name=null]/@entries[name='block_bg']" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='block_fg']">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </containerMappings>
+        <containerMappings name="CRType" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='standardDelete']" labelDirectEdit="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='editNameLabel']" semanticCandidatesExpression="feature:elements" domainClass="ddl.ConsumableResourceComponentType" childrenPresentation="List">
+          <subNodeMappings name="CRvalueMin" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='forbiddenDelete']" labelDirectEdit="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='editCRvalueMin']" semanticCandidatesExpression="var:self" domainClass="ddl.ConsumableResourceComponentType">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'min: '+self.val1" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="CRvalueMax" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='forbiddenDelete']" labelDirectEdit="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='editCRvalueMax']" semanticCandidatesExpression="var:self" domainClass="ddl.ConsumableResourceComponentType">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'max: '+self.val2" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="10" iconPath="/it.cnr.istc.keen.modeling.design/icons/consumable.png" roundedCorner="true" backgroundColor="//@userColorsPalettes[name=null]/@entries[name='block_bg']" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='block_fg']">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </containerMappings>
+        <toolSections name="typesSection" label="Create Type">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="createRRType" label="Renewable Resource" containerMappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@additionalLayers[name='resourcesLayer']/@containerMappings[name='RRType']" iconPath="/it.cnr.istc.keen.modeling.design/icons/renewable.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="ddl.RenewableResourceComponentType" referenceName="elements">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'RenewableResource'+container.elements->filter(ddl::RenewableResourceComponentType)->size()"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="value" valueExpression="aql:100.toString()"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="createCRType" label="Consumable Resource" containerMappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@additionalLayers[name='resourcesLayer']/@containerMappings[name='CRType']" iconPath="/it.cnr.istc.keen.modeling.design/icons/consumable.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="ddl.ConsumableResourceComponentType" referenceName="elements">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'ConsumableResource'+container.elements->filter(ddl::ConsumableResourceComponentType)->size()"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="val1" valueExpression="aql:100.toString()"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="val2" valueExpression="aql:100.toString()"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </additionalLayers>
+      <additionalLayers name="parameterLayer" label="Parameters" activeByDefault="true">
+        <containerMappings name="EnumType" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='standardDelete']" labelDirectEdit="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='editNameLabel']" semanticCandidatesExpression="feature:elements" domainClass="ddl.EnumerationParameterType" childrenPresentation="List">
+          <subNodeMappings name="enumLiteral" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='standardDelete']" labelDirectEdit="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='editNameLabel']" semanticCandidatesExpression="feature:values" domainClass="ddl.EnumLiteral">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="10" iconPath="/it.cnr.istc.keen.ui/icons/enumtype.png" roundedCorner="true" backgroundColor="//@userColorsPalettes[name=null]/@entries[name='block_bg']" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='block_fg']">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </containerMappings>
+        <containerMappings name="NumericType" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='standardDelete']" labelDirectEdit="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='editNameLabel']" semanticCandidatesExpression="feature:elements" domainClass="ddl.NumericParameterType" childrenPresentation="List">
+          <subNodeMappings name="numTypeRange" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='forbiddenDelete']" labelDirectEdit="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='editURange']" semanticCandidatesExpression="feature:range" domainClass="ddl.URange">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'['+self.lb+','+self.ub+']'" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="10" iconPath="/it.cnr.istc.keen.ui/icons/numerictype.png" roundedCorner="true" backgroundColor="//@userColorsPalettes[name=null]/@entries[name='block_bg']" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='block_fg']">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </containerMappings>
+        <toolSections name="typesSection" label="Create Type">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="createEnumType" label="Enumeration" containerMappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@additionalLayers[name='parameterLayer']/@containerMappings[name='EnumType']" iconPath="/it.cnr.istc.keen.ui/icons/enumtype.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="ddl.EnumerationParameterType" referenceName="elements">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'Enumeration'+container.elements->filter(ddl::EnumerationParameterType)->size()"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="createNumericType" label="Numeric" containerMappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@additionalLayers[name='parameterLayer']/@containerMappings[name='NumericType']" iconPath="/it.cnr.istc.keen.ui/icons/numerictype.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="ddl.NumericParameterType" referenceName="elements">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'Numeric'+container.elements->filter(ddl::NumericParameterType)->size()"/>
+                  <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:instance">
+                    <subModelOperations xsi:type="tool_1:CreateInstance" typeName="ddl.URange" referenceName="range">
+                      <subModelOperations xsi:type="tool_1:SetValue" featureName="lb" valueExpression="aql:0.toString()"/>
+                      <subModelOperations xsi:type="tool_1:SetValue" featureName="ub" valueExpression="aql:100.toString()"/>
+                    </subModelOperations>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="createEnum" label="Enumeration">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createEnumLiteral" label="Enum Literal" nodeMappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@additionalLayers[name='parameterLayer']/@containerMappings[name='EnumType']/@subNodeMappings[name='enumLiteral']" iconPath="/it.cnr.istc.keen.ui/icons/enumliteral.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="ddl.EnumLiteral" referenceName="values">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'value'+container.values->size()"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </additionalLayers>
+      <additionalLayers name="dependenciesLayer" label="Dependencies">
+        <edgeMappings name="svParTypeDependency" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='forbiddenDelete']" sourceMapping="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@additionalLayers[name='stateVariablesLayer']/@containerMappings[name='SVType']" targetMapping="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@additionalLayers[name='parameterLayer']/@containerMappings[name='EnumType'] //@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@additionalLayers[name='parameterLayer']/@containerMappings[name='NumericType']" targetFinderExpression="aql:self.decTypes->collect(cd|cd.args)->asSet()">
+          <style lineStyle="dash">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription showIcon="false" labelExpression="«depends»">
+              <labelFormat>italic</labelFormat>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+      </additionalLayers>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="TypeConstraints" label="Type Constraints" titleExpression="aql:'Constraints for '+self.oclAsType(ddl::StateVariableComponentType).name" domainClass="ddl.StateVariableComponentType" enablePopupBars="true">
+      <metamodel href="http://pst.istc.cnr.it/keen/Ddl#/"/>
+      <defaultLayer name="Default">
+        <edgeMappings name="meetsRelation" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='standardDelete']" semanticCandidatesExpression="aql:self.transConstraint.meets" doubleClickDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='TypeConstraints']/@defaultLayer/@toolSections.1/@ownedTools[name='typeConstraintDblClick']" sourceMapping="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='TypeConstraints']/@defaultLayer/@containerMappings[name='CdType']" targetMapping="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='TypeConstraints']/@defaultLayer/@containerMappings[name='CdType']" targetFinderExpression="feature:value" sourceFinderExpression="aql:self.eContainer().oclAsType(ddl::TransitionConstraint).value.oclAsType(ddl::SVComponentDecision).value" domainClass="ddl.SVComponentDecision" useDomainElement="true">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription showIcon="false">
+              <labelFormat>bold</labelFormat>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="CdType" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='standardDelete']" labelDirectEdit="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='editCdType']" semanticCandidatesExpression="feature:decTypes" domainClass="ddl.ComponentDecisionType" childrenPresentation="List">
+          <subNodeMappings name="transConstrRange" preconditionExpression="aql:self.value.value=container" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='forbiddenDelete']" labelDirectEdit="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='TypeConstraints']/@defaultLayer/@toolSections.0/@ownedTools[name='transConstraintEditRange']" semanticCandidatesExpression="aql:self.eContainerOrSelf(ddl::StateVariableComponentType).transConstraint" domainClass="ddl.TransitionConstraint">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="feature:range" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" arcWidth="30" arcHeight="30" borderSizeComputationExpression="1" labelSize="10" labelExpression="aql:self.name+'('+self.args->collect(a|a.name)->sep(', ')->toString()+')'" iconPath="/it.cnr.istc.keen.ui/icons/decisiontype.png" roundedCorner="true" widthComputationExpression="aql:10.max(self.eInverse('target')->filter(diagram::DNodeList)->first().name.size()+4)" backgroundColor="//@userColorsPalettes[name=null]/@entries[name='block_bg']" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='block_fg']">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>italic</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </containerMappings>
+        <toolSections name="constraintsSection" label="Tools">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="createMeetsRelation" label="Constraint" edgeMappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='TypeConstraints']/@defaultLayer/@edgeMappings[name='meetsRelation']" iconPath="/it.cnr.istc.keen.modeling.design/icons/arrow.png">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="service:createTransitionConstraint(source,target)"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="createConstrCdType" label="Value" containerMappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='TypeConstraints']/@defaultLayer/@containerMappings[name='CdType']" iconPath="/it.cnr.istc.keen.ui/icons/decisiontype.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="ddl.ComponentDecisionType" referenceName="decTypes">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'Value'+container.decTypes->size()"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DirectEditLabel" name="transConstraintEditRange">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:self">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="range" valueExpression="aql:arg0.parseRange(self.range)"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Edit">
+          <ownedTools xsi:type="tool_1:ToolDescription" name="textEditTypeConstraint" label="Constraints" precondition="aql:container.oclIsKindOf(ddl::SVComponentDecision)" iconPath="/it.cnr.istc.keen.modeling.design/icons/arrow.png">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:element.eContainer().openEmbeddedEditor(elementView)"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="typeConstraintDblClick" mappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='TypeConstraints']/@defaultLayer/@edgeMappings[name='meetsRelation']">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:element.eContainer().openEmbeddedEditor(elementView)"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <decorationDescriptionsSet>
+          <decorationDescriptions xsi:type="description_1:MappingBasedDecoration" name="controllableDecorator" position="NORTH_EAST" decoratorPath="/it.cnr.istc.keen.modeling.design/icons/controllable.png" preconditionExpression="aql:self.getControllability().toString()='Controllable'" mappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='TypeConstraints']/@defaultLayer/@containerMappings[name='CdType']"/>
+          <decorationDescriptions xsi:type="description_1:MappingBasedDecoration" name="uncontrollableDecorator" position="NORTH_EAST" decoratorPath="/it.cnr.istc.keen.modeling.design/icons/uncontrollable.png" preconditionExpression="aql:self.getControllability().toString()='Uncontrollable'" mappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='TypeConstraints']/@defaultLayer/@containerMappings[name='CdType']"/>
+        </decorationDescriptionsSet>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="componentDiagram" label="Component Diagram" titleExpression="Component Diagram" domainClass="ddl.Domain" enablePopupBars="true">
+      <metamodel href="http://pst.istc.cnr.it/keen/Ddl#/"/>
+      <defaultLayer name="Default">
+        <containerMappings name="component" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='standardDelete']" labelDirectEdit="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='componentDiagram']/@defaultLayer/@toolSections.1/@ownedTools[name='editComponent']" semanticCandidatesExpression="aql:self.elements->filter(ddl::Component)" domainClass="ddl.Component" childrenPresentation="List">
+          <subNodeMappings name="timeline" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='standardDelete']" labelDirectEdit="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='editNameLabel']" semanticCandidatesExpression="feature:timelines" doubleClickDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='componentDiagram']/@defaultLayer/@toolSections.1/@ownedTools[name='timelineDblClick']" domainClass="ddl.Timeline">
+            <style xsi:type="style:SquareDescription" iconPath="/it.cnr.istc.keen.ui/icons/timeline.png" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+            <conditionnalStyles predicateExpression="aql:self.isExternalTimeline()">
+              <style xsi:type="style:SquareDescription" iconPath="/it.cnr.istc.keen.modeling.design/icons/external.png" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+              </style>
+            </conditionnalStyles>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="10" labelExpression="aql:self.name+': '+self.type.name" iconPath="/it.cnr.istc.keen.ui/icons/component.png" roundedCorner="true" backgroundColor="//@userColorsPalettes[name=null]/@entries[name='block_bg']" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='block_fg']">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </containerMappings>
+        <toolSections name="componentSection" label="Tools">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="createComponent" label="Component" containerMappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='componentDiagram']/@defaultLayer/@containerMappings[name='component']" iconPath="/it.cnr.istc.keen.ui/icons/component.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="ddl.Component" referenceName="elements" variableName="compInstance">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'NewComponent'+container.elements->filter(ddl::Component)->size()">
+                    <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:compInstance">
+                      <subModelOperations xsi:type="tool_1:CreateInstance" typeName="ddl.Timeline" referenceName="timelines" variableName="tmlInstance">
+                        <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="newTimeline1"/>
+                      </subModelOperations>
+                    </subModelOperations>
+                  </subModelOperations>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="type"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createTimeline" label="Timeline" nodeMappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='componentDiagram']/@defaultLayer/@containerMappings[name='component']/@subNodeMappings[name='timeline']" iconPath="/it.cnr.istc.keen.ui/icons/timeline.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="ddl.Timeline" referenceName="timelines">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'newTimeline'+container.timelines->size()"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="compHiddenSection">
+          <ownedTools xsi:type="tool:DirectEditLabel" name="editComponent">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.editComponentLabel(arg0)"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="timelineDblClick" mappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='componentDiagram']/@defaultLayer/@containerMappings[name='component']/@subNodeMappings[name='timeline']">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:self.eContainerOrSelf(ddl::Domain).elements->filter(ddl::TimelineSynchronization)->select(o|o.timeline=element)->size()=0">
+                  <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.eContainerOrSelf(ddl::Domain)">
+                    <subModelOperations xsi:type="tool_1:CreateInstance" typeName="ddl.TimelineSynchronization" referenceName="elements" variableName="synchro">
+                      <subModelOperations xsi:type="tool_1:SetValue" featureName="timeline" valueExpression="var:element"/>
+                    </subModelOperations>
+                  </subModelOperations>
+                </subModelOperations>
+                <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.eContainerOrSelf(ddl::Domain).elements->filter(ddl::TimelineSynchronization)->select(o|o.timeline=element)->first()">
+                  <subModelOperations xsi:type="tool:Navigation" createIfNotExistent="true" diagramDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='synchronizationDiagram']"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+      <additionalLayers name="compDependenciesLayer" label="Dependencies">
+        <edgeMappings name="compSyncDependency" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='forbiddenDelete']" sourceMapping="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='componentDiagram']/@defaultLayer/@containerMappings[name='component']" targetMapping="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='componentDiagram']/@defaultLayer/@containerMappings[name='component']" targetFinderExpression="aql:self.getTimelineDependencies()">
+          <style lineStyle="dash">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription showIcon="false" labelExpression="«depends»">
+              <labelFormat>italic</labelFormat>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+      </additionalLayers>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="synchronizationDiagram" label="Synchronization Diagram" titleExpression="aql:'Synchronizations for '+self.timeline.eContainerOrSelf(ddl::Component).name+'.'+self.timeline.name" domainClass="ddl.TimelineSynchronization" enablePopupBars="true">
+      <metamodel href="http://pst.istc.cnr.it/keen/Ddl#/"/>
+      <defaultLayer name="Default">
+        <edgeMappings name="syncTemporalConstraint" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='standardDelete']" labelDirectEdit="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='synchronizationDiagram']/@defaultLayer/@toolSections.1/@ownedTools[name='editSyncTemporalConstraint']" semanticCandidatesExpression="aql:self.synchronizations.elements->filter(ddl::TemporalConstraint)" sourceMapping="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='synchronizationDiagram']/@defaultLayer/@containerMappings[name='syncCompDecHead'] //@ownedViewpoints[name='ddl']/@ownedRepresentations[name='synchronizationDiagram']/@additionalLayers[name='syncTailsLayer']/@containerMappings[name='syncCompDecTail']" targetMapping="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='synchronizationDiagram']/@additionalLayers[name='syncTailsLayer']/@containerMappings[name='syncCompDecTail']" targetFinderExpression="feature:to" sourceFinderExpression="service:getSynchronizationSource" domainClass="ddl.TemporalConstraint" useDomainElement="true">
+          <style sizeComputationExpression="2" foldingStyle="SOURCE" endsCentering="Both">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription showIcon="false" labelExpression="aql:self.relType">
+              <labelFormat>bold</labelFormat>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="syncCompDecHead" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='standardDelete']" semanticCandidatesExpression="feature:synchronizations" domainClass="ddl.Synchronization" childrenPresentation="List">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelExpression="aql:self.value.getComponentDecisionName()" iconPath="/it.cnr.istc.keen.ui/icons/synchronization.png" backgroundColor="//@userColorsPalettes[name=null]/@entries[name='block_bg']" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='block_fg']">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelBorderStyle href="environment:/viewpoint#//@labelBorderStyles/@labelBorderStyleDescriptions.2"/>
+          </style>
+        </containerMappings>
+        <toolSections name="createSyncSection" label="Create">
+          <ownedTools xsi:type="tool_1:ToolDescription" name="createSynch" label="Synchronization" precondition="aql:container.oclIsTypeOf(ddl::Synchronization) or container.oclIsTypeOf(ddl::InstantiatedComponentDecision)" iconPath="/it.cnr.istc.keen.modeling.design/icons/arrow.png">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.createSynchronization(element,element.syncTargetSelectionWizard())"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="syncHiddenSection">
+          <ownedTools xsi:type="tool:DirectEditLabel" name="editSyncTemporalConstraint">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:self">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="relType" valueExpression="aql:self.parseTemporalRelationType(arg0,self.relType)"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+      <additionalLayers name="syncTypesLayer" label="Types" activeByDefault="true">
+        <containerMappings name="syncCompTypeSV" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='forbiddenDelete']" semanticCandidatesExpression="aql:self.timeline.eContainerOrSelf(ddl::Component).type->asSequence()->filter(ddl::StateVariableComponentType).decTypes" domainClass="ddl.ComponentDecisionType" childrenPresentation="List">
+          <style xsi:type="style:FlatContainerStyleDescription" arcWidth="30" arcHeight="30" borderSizeComputationExpression="1" labelExpression="aql:self.eContainer().oclAsType(ddl::StateVariableComponentType).name+'.'+self.name" iconPath="/it.cnr.istc.keen.ui/icons/decisiontype.png" roundedCorner="true" backgroundColor="//@userColorsPalettes[name=null]/@entries[name='block_bg']" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='block_fg']">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>italic</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelBorderStyle href="environment:/viewpoint#//@labelBorderStyles/@labelBorderStyleDescriptions.2"/>
+          </style>
+        </containerMappings>
+        <containerMappings name="syncCompTypeRR" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='forbiddenDelete']" semanticCandidatesExpression="aql:self.timeline.eContainerOrSelf(ddl::Component).type->asSequence()->filter(ddl::RenewableResourceComponentType)" domainClass="ddl.RenewableResourceComponentType" childrenPresentation="List">
+          <style xsi:type="style:FlatContainerStyleDescription" arcWidth="30" arcHeight="30" borderSizeComputationExpression="1" labelExpression="aql:self.name+'.'+'REQUIREMENT'" iconPath="/it.cnr.istc.keen.ui/icons/synchronization.png" roundedCorner="true" backgroundColor="//@userColorsPalettes[name=null]/@entries[name='block_bg']" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='block_fg']">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>italic</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelBorderStyle href="environment:/viewpoint#//@labelBorderStyles/@labelBorderStyleDescriptions.2"/>
+          </style>
+        </containerMappings>
+        <containerMappings name="syncCompTypeCR" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='forbiddenDelete']" semanticCandidatesExpression="aql:self.timeline.eContainerOrSelf(ddl::Component).type->asSequence()->filter(ddl::ConsumableResourceComponentType)" domainClass="ddl.ConsumableResourceComponentType" childrenPresentation="VerticalStack">
+          <subContainerMappings name="CRconsType" label="CONSUMPTION" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='forbiddenDelete']" semanticCandidatesExpression="var:self" domainClass="ddl.ConsumableResourceComponentType">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="CONSUMPTION" backgroundColor="//@userColorsPalettes[name=null]/@entries[name='block_bg']" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='block_fg']">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+          </subContainerMappings>
+          <subContainerMappings name="CRprodType" label="PRODUCTION" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='forbiddenDelete']" semanticCandidatesExpression="var:self" domainClass="ddl.ConsumableResourceComponentType">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="PRODUCTION" backgroundColor="//@userColorsPalettes[name=null]/@entries[name='block_bg']" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='block_fg']">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+          </subContainerMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" arcWidth="30" arcHeight="30" borderSizeComputationExpression="1" labelExpression="aql:self.name" iconPath="/it.cnr.istc.keen.ui/icons/synchronization.png" roundedCorner="true" backgroundColor="//@userColorsPalettes[name=null]/@entries[name='block_bg']" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='block_fg']">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>italic</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelBorderStyle href="environment:/viewpoint#//@labelBorderStyles/@labelBorderStyleDescriptions.2"/>
+          </style>
+        </containerMappings>
+        <toolSections name="Tools">
+          <ownedTools xsi:type="tool_1:ToolDescription" name="createSynchHead" label="Trigger" precondition="aql:container.canCreateTrigger(container,containerView)" iconPath="/it.cnr.istc.keen.ui/icons/synchronization.png">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.createSyncValueBlock(element,elementView)"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </additionalLayers>
+      <additionalLayers name="syncTailsLayer" label="Targets" activeByDefault="true">
+        <containerMappings name="syncCompDecTail" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='standardDelete']" semanticCandidatesExpression="aql:self.synchronizations.elements->filter(ddl::InstantiatedComponentDecision)" domainClass="ddl.InstantiatedComponentDecision" childrenPresentation="List">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelExpression="aql:self.getICDName()" iconPath="/it.cnr.istc.keen.ui/icons/synchronization.png" backgroundColor="//@userColorsPalettes[name=null]/@entries[name='block_bg']" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='block_fg']">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelBorderStyle href="environment:/viewpoint#//@labelBorderStyles/@labelBorderStyleDescriptions.2"/>
+          </style>
+        </containerMappings>
+        <toolSections name="Edit">
+          <ownedTools xsi:type="tool_1:ToolDescription" name="textEditSynchBlock" label="Constraints" precondition="aql:container.oclIsKindOf(ddl::Synchronization)" iconPath="/it.cnr.istc.keen.modeling.design/icons/editconstraints.png">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:element.openEmbeddedEditor(elementView)"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="connectSyncSection" label="Connect">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="d" label="Synchronization" precondition="aql:preTarget.oclIsKindOf(ddl::InstantiatedComponentDecision) and preTarget.eContainerOrSelf(ddl::Synchronization)=preSource.eContainerOrSelf(ddl::Synchronization)" edgeMappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='synchronizationDiagram']/@defaultLayer/@edgeMappings[name='syncTemporalConstraint']" iconPath="/it.cnr.istc.keen.modeling.design/icons/arrow.png" connectionStartPrecondition="aql:preSource.oclIsKindOf(ddl::InstantiatedComponentDecision)">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.connectSynchronizationElements(source, target)"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </additionalLayers>
+      <additionalLayers name="syncDependenciesLayer" label="Dependencies" activeByDefault="true">
+        <edgeMappings name="syncInstanceOf" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='forbiddenDelete']" sourceMapping="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='synchronizationDiagram']/@additionalLayers[name='syncTypesLayer']/@containerMappings[name='syncCompTypeSV'] //@ownedViewpoints[name='ddl']/@ownedRepresentations[name='synchronizationDiagram']/@additionalLayers[name='syncTypesLayer']/@containerMappings[name='syncCompTypeRR'] //@ownedViewpoints[name='ddl']/@ownedRepresentations[name='synchronizationDiagram']/@additionalLayers[name='syncTypesLayer']/@containerMappings[name='syncCompTypeCR']" targetMapping="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='synchronizationDiagram']/@defaultLayer/@containerMappings[name='syncCompDecHead']" targetFinderExpression="aql:self.getComponentDecisionsForType(diagram)">
+          <style lineStyle="dash" sourceArrow="InputArrow" targetArrow="NoDecoration" routingStyle="tree" foldingStyle="TARGET">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription showIcon="false" labelExpression="«instance of»">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="syncParamDepend" deletionDescription="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='DomainModel']/@defaultLayer/@toolSections.0/@ownedTools[name='forbiddenDelete']" sourceMapping="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='synchronizationDiagram']/@additionalLayers[name='syncTailsLayer']/@containerMappings[name='syncCompDecTail']" targetMapping="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='synchronizationDiagram']/@additionalLayers[name='syncTailsLayer']/@containerMappings[name='syncCompDecTail']" targetFinderExpression="aql:self.getExtraParameterConstraintsTarget()" sourceFinderExpression="aql:self.getExtraParameterConstraintsSource()" domainClass="ddl.ParameterConstraint" useDomainElement="true">
+          <style lineStyle="dash" targetArrow="NoDecoration" endsCentering="Both">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription showIcon="false" labelExpression="«bound»">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+      </additionalLayers>
+    </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="it.cnr.istc.keen.modeling.design.Services"/>
+    <ownedJavaExtensions qualifiedClassName="it.cnr.istc.keen.modeling.design.ext.embeddededitor.OpenEmbeddedEditorServices"/>
+  </ownedViewpoints>
+  <userColorsPalettes>
+    <entries xsi:type="description:UserFixedColor" red="255" green="251" blue="244" name="block_bg"/>
+    <entries xsi:type="description:UserFixedColor" red="255" green="251" blue="214" name="block_fg"/>
+  </userColorsPalettes>
+  <extensions xsi:type="properties:ViewExtensionDescription" identifier="org.eclipse.sirius.ui.properties">
+    <metamodels href="http://pst.istc.cnr.it/keen/Ddl#/"/>
+    <pages identifier="org.eclipse.sirius.ui.properties.defaultpage" labelExpression="aql:input.emfEditServices(self).getTabName()" semanticCandidateExpression="aql:input.getAllSemanticElements()" groups="//@extensions.0/@groups.0"/>
+    <groups identifier="it.cnr.istc.keen.modeling.properties.defaultgroup" labelExpression="Properties" semanticCandidateExpression="var:self">
+      <controls xsi:type="properties:DynamicMappingFor" iterator="eStructuralFeature" iterableExpression="aql:input.emfEditServices(self).getEStructuralFeatures()">
+        <ifs predicateExpression="aql:input.emfEditServices(self).needsTextWidget(eStructuralFeature) and not input.emfEditServices(self).isMultiline(eStructuralFeature) and not(self.hideFromProperties(eStructuralFeature))">
+          <widget xsi:type="properties:TextDescription" identifier="sirius_default_rules_mono_string" labelExpression="aql:self.propGetLabel(eStructuralFeature)+': '" helpExpression="aql:input.emfEditServices(self).getDescription(eStructuralFeature)" isEnabledExpression="aql:eStructuralFeature.changeable" valueExpression="aql:self.propGetValue(eStructuralFeature)">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.propSetValue(eStructuralFeature, newValue)"/>
+            </initialOperation>
+            <conditionalStyles preconditionExpression="aql:eStructuralFeature.lowerBound==1">
+              <style>
+                <labelFontFormat>bold</labelFontFormat>
+              </style>
+            </conditionalStyles>
+          </widget>
+        </ifs>
+        <ifs predicateExpression="aql:input.emfEditServices(self).needsTextWidget(eStructuralFeature) and input.emfEditServices(self).isMultiline(eStructuralFeature) and not(self.hideFromProperties(eStructuralFeature))">
+          <widget xsi:type="properties:TextAreaDescription" identifier="sirius_default_rules_multi_string" labelExpression="aql:self.propGetLabel(eStructuralFeature)+': '" helpExpression="aql:input.emfEditServices(self).getDescription(eStructuralFeature)" isEnabledExpression="aql:eStructuralFeature.changeable" valueExpression="aql:self.propGetValue(eStructuralFeature)">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.propSetValue(eStructuralFeature, newValue)"/>
+            </initialOperation>
+            <conditionalStyles preconditionExpression="aql:eStructuralFeature.lowerBound==1">
+              <style>
+                <labelFontFormat>bold</labelFontFormat>
+              </style>
+            </conditionalStyles>
+          </widget>
+        </ifs>
+        <ifs predicateExpression="aql:input.emfEditServices(self).needsCheckboxWidget(eStructuralFeature) and not(self.hideFromProperties(eStructuralFeature))">
+          <widget xsi:type="properties:CheckboxDescription" identifier="sirius_default_rules_mono_boolean" labelExpression="aql:self.propGetLabel(eStructuralFeature)+': '" helpExpression="aql:input.emfEditServices(self).getDescription(eStructuralFeature)" isEnabledExpression="aql:eStructuralFeature.changeable" valueExpression="aql:self.propGetValue(eStructuralFeature)">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.propSetValue(eStructuralFeature, newValue)"/>
+            </initialOperation>
+            <conditionalStyles preconditionExpression="aql:eStructuralFeature.lowerBound==1">
+              <style>
+                <labelFontFormat>bold</labelFontFormat>
+              </style>
+            </conditionalStyles>
+          </widget>
+        </ifs>
+        <ifs predicateExpression="aql:eStructuralFeature.eType.oclIsKindOf(ecore::EEnum) and not(eStructuralFeature.many) and (eStructuralFeature.eType.eLiterals->size()&lt;=3) and not(self.hideFromProperties(eStructuralFeature))">
+          <widget xsi:type="properties:RadioDescription" identifier="sirius_default_rules_enum" labelExpression="aql:self.propGetLabel(eStructuralFeature)+': '" helpExpression="aql:input.emfEditServices(self).getDescription(eStructuralFeature)" isEnabledExpression="aql:eStructuralFeature.changeable" valueExpression="aql:eStructuralFeature.eType.getEEnumLiteralByLiteral(self.eGet(eStructuralFeature.name).toString())" candidatesExpression="aql:eStructuralFeature.eType.eLiterals" candidateDisplayExpression="aql:candidate.name" numberOfColumns="3">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.propSetValue(eStructuralFeature, newValue)"/>
+            </initialOperation>
+            <conditionalStyles preconditionExpression="aql:eStructuralFeature.lowerBound==1">
+              <style>
+                <labelFontFormat>bold</labelFontFormat>
+              </style>
+            </conditionalStyles>
+          </widget>
+        </ifs>
+        <ifs predicateExpression="aql:eStructuralFeature.eType.oclIsKindOf(ecore::EEnum) and not(eStructuralFeature.many) and (eStructuralFeature.eType.eLiterals->size()>3) and not(self.hideFromProperties(eStructuralFeature))">
+          <widget xsi:type="properties:SelectDescription" labelExpression="aql:self.propGetLabel(eStructuralFeature)+': '" helpExpression="aql:input.emfEditServices(self).getDescription(eStructuralFeature)" isEnabledExpression="aql:eStructuralFeature.changeable" valueExpression="aql:eStructuralFeature.eType.getEEnumLiteralByLiteral(self.eGet(eStructuralFeature.name).toString())" candidatesExpression="aql:eStructuralFeature.eType.eLiterals" candidateDisplayExpression="aql:candidate.name">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.propSetValue(eStructuralFeature, newValue)"/>
+            </initialOperation>
+            <conditionalStyles preconditionExpression="aql:eStructuralFeature.lowerBound==1">
+              <style>
+                <labelFontFormat>bold</labelFontFormat>
+              </style>
+            </conditionalStyles>
+          </widget>
+        </ifs>
+        <ifs predicateExpression="aql:eStructuralFeature.oclIsKindOf(ecore::EAttribute) and eStructuralFeature.many and not(self.hideFromProperties(eStructuralFeature))">
+          <widget xsi:type="properties:ListDescription" identifier="sirius_default_rules_eattribute_many" labelExpression="aql:self.propGetLabel(eStructuralFeature)+': '" helpExpression="aql:input.emfEditServices(self).getDescription(eStructuralFeature)" isEnabledExpression="aql:eStructuralFeature.changeable" valueExpression="aql:self.propGetValue(eStructuralFeature)" displayExpression="var:value"/>
+        </ifs>
+        <ifs predicateExpression="aql:eStructuralFeature.oclIsKindOf(ecore::EReference) and eStructuralFeature.many and not(self.hideFromProperties(eStructuralFeature))">
+          <widget xsi:type="properties:ListDescription" labelExpression="aql:self.propGetLabel(eStructuralFeature)+': '" helpExpression="aql:input.emfEditServices(self).getDescription(eStructuralFeature)" isEnabledExpression="aql:eStructuralFeature.changeable" valueExpression="aql:self.propGetValue(eStructuralFeature)" displayExpression="aql:value.name">
+            <actions labelExpression="...">
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.doSelectAndAddValue(eStructuralFeature,selection)"/>
+              </initialOperation>
+            </actions>
+            <actions labelExpression="Remove">
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:self"/>
+              </initialOperation>
+            </actions>
+            <actions labelExpression="Up">
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:self"/>
+              </initialOperation>
+            </actions>
+            <actions labelExpression="Down">
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:self"/>
+              </initialOperation>
+            </actions>
+          </widget>
+        </ifs>
+        <ifs predicateExpression="aql:eStructuralFeature.oclIsKindOf(ecore::EReference) and not (eStructuralFeature.many) and not(self.hideFromProperties(eStructuralFeature))">
+          <widget xsi:type="properties:HyperlinkDescription" labelExpression="aql:self.propGetLabel(eStructuralFeature)+': '" helpExpression="aql:input.emfEditServices(self).getDescription(eStructuralFeature)" isEnabledExpression="aql:self.propIsEnabled(eStructuralFeature)" valueExpression="aql:self.propGetValue(eStructuralFeature)" displayExpression="aql:value.name">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.testThis(input.context().session(),selection)"/>
+            </initialOperation>
+            <actions labelExpression="&amp;Select...">
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.selectReference(eStructuralFeature)"/>
+              </initialOperation>
+            </actions>
+          </widget>
+        </ifs>
+        <ifs predicateExpression="aql:self.isExternalTimelineFeature(eStructuralFeature)">
+          <widget xsi:type="properties:CheckboxDescription" labelExpression="External" helpExpression="aql:input.emfEditServices(self).getDescription(eStructuralFeature)" isEnabledExpression="aql:true" valueExpression="aql:self.isExternalTimeline()">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.propSetValue(eStructuralFeature, newValue)"/>
+            </initialOperation>
+            <conditionalStyles preconditionExpression="aql:eStructuralFeature.lowerBound==1">
+              <style>
+                <labelFontFormat>bold</labelFontFormat>
+              </style>
+            </conditionalStyles>
+          </widget>
+        </ifs>
+        <ifs predicateExpression="aql:self.canBeControllable(eStructuralFeature)">
+          <widget xsi:type="properties:RadioDescription" labelExpression="Controllability: " helpExpression="aql:input.emfEditServices(self).getDescription(eStructuralFeature)" isEnabledExpression="aql:self.canBeControllable()" valueExpression="aql:self.getControllability()" candidatesExpression="aql:self.getControllabilityValues()" candidateDisplayExpression="aql:candidate.toString()" numberOfColumns="3">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.setControllability(newValue)"/>
+            </initialOperation>
+            <conditionalStyles preconditionExpression="aql:eStructuralFeature.lowerBound==1">
+              <style>
+                <labelFontFormat>bold</labelFontFormat>
+              </style>
+            </conditionalStyles>
+          </widget>
+        </ifs>
+      </controls>
+    </groups>
+  </extensions>
+</description:Group>

@@ -34,6 +34,34 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<!-- workaround https://bugs.eclipse.org/bugs/show_bug.cgi?id=453708 -->
+			<plugin>
+				<groupId>org.jboss.tools.tycho-plugins</groupId>
+				<artifactId>repository-utils</artifactId>
+				<version>0.26.1</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>generate-repository-facade</goal>
+						</goals>
+						<configuration>
+							<skipBuildInfo>true</skipBuildInfo>
+							<skipWebContentGeneration>true</skipWebContentGeneration>
+							<associateSites>
+								<associateSite>http://download.eclipse.org/elk/updates/releases/0.2.0</associateSite>
+							</associateSites>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>jboss</id>
+			<url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
+		</pluginRepository>
+	</pluginRepositories>
 </project>
