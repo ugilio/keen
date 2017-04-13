@@ -428,12 +428,17 @@
 	<extension
 		point="org.eclipse.ui.newWizards">
 		<wizard
-			category="org.eclipse.xtext.projectwiz"
-			class="it.cnr.istc.keen.ui.DdlExecutableExtensionFactory:it.cnr.istc.keen.ui.wizard.DdlNewProjectWizard"
-			id="it.cnr.istc.keen.ui.wizard.DdlNewProjectWizard"
-			name="Ddl Project"
-				project="true">
+        category="it.cnr.istc.keen.ui.ddlcategory"
+        class="it.cnr.istc.keen.ui.DdlExecutableExtensionFactory:it.cnr.istc.keen.ui.wizard.DdlNewProjectWizard"
+        icon="icons/ddl_project.png"
+        id="it.cnr.istc.keen.ui.wizard.DdlNewProjectWizard"
+        name="Ddl Project"
+        project="true">
 		</wizard>
+  <category
+        id="it.cnr.istc.keen.ui.ddlcategory"
+        name="Ddl">
+  </category>
 	</extension>
 	<extension
 		point="org.eclipse.ltk.ui.refactoring.statusContextViewers">
