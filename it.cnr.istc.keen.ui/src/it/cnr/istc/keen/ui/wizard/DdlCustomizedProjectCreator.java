@@ -12,7 +12,14 @@ package it.cnr.istc.keen.ui.wizard;
 
 import java.util.List;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+
 import com.google.common.collect.ImmutableList;
+
+import it.cnr.istc.keen.ui.nature.DdlNature;
+import it.cnr.istc.keen.ui.nature.NatureUtils;
 
 public class DdlCustomizedProjectCreator extends DdlProjectCreator {
 	
@@ -21,5 +28,8 @@ public class DdlCustomizedProjectCreator extends DdlProjectCreator {
 		return ImmutableList.of(getModelFolderName());
 	}
 
-
+	protected void enhanceProject(final IProject project, final IProgressMonitor monitor) throws CoreException {
+		NatureUtils.addNature(project,DdlNature.ID);
+		super.enhanceProject(project, monitor);
+	}
 }

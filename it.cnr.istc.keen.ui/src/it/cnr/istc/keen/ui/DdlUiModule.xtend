@@ -24,6 +24,7 @@ import it.cnr.istc.keen.ui.refactoring.DdlRenameStrategy
 import it.cnr.istc.keen.ui.refactoring.DdlReferenceUpdater
 import it.cnr.istc.keen.ui.refactoring.DdlDependentItemsCalculator
 import it.cnr.istc.keen.ui.wizard.DdlCustomizedProjectCreator
+import it.cnr.istc.keen.ui.nature.SilentNatureAddingEditorCallback
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -63,4 +64,7 @@ class DdlUiModule extends AbstractDdlUiModule {
 		return DdlCustomizedProjectCreator;
 	}
 	
+	override bindIXtextEditorCallback() {
+		return SilentNatureAddingEditorCallback;
+	}
 }

@@ -23,8 +23,10 @@ Require-Bundle: it.cnr.istc.keen,
  org.eclipse.core.runtime,
  org.eclipse.xtext.common.types.ui
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: it.cnr.istc.keen.ui.quickfix,
- it.cnr.istc.keen.ui.contentassist,
- it.cnr.istc.keen.ui.internal
+Export-Package: it.cnr.istc.keen.ui.contentassist,
+ it.cnr.istc.keen.ui.internal,
+ it.cnr.istc.keen.ui.labeling,
+ it.cnr.istc.keen.ui.nature,
+ it.cnr.istc.keen.ui.quickfix
 Bundle-Activator: it.cnr.istc.keen.ui.internal.KeenActivator
 Import-Package: org.apache.log4j;version="1.2.15"
