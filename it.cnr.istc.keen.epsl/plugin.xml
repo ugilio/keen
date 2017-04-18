@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="it.cnr.istc.keen.Ddl"
+            class="it.cnr.istc.keen.epsl.preferences.EPSLPreferencesPage"
+            id="it.cnr.istc.keen.epsl.epsl"
+            name="Installed EPSL Planners">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="it.cnr.istc.keen.epsl.launchers.EpslLaunchConfigurationDelegate"
+            id="it.cnr.istc.keen.epsl.launchers.epsl"
+            modes="run, verify"
+            name="EPSL planning problem"
+            public="true">
+      </launchConfigurationType>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="it.cnr.istc.keen.epsl.launchers.EpslLaunchConfigurationTabGroup"
+            id="it.cnr.istc.keen.epsl.launchers.epslLaunchConfigurationTabGroup"
+            type="it.cnr.istc.keen.epsl.launchers.epsl">
+      </launchConfigurationTabGroup>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            class="it.cnr.istc.keen.epsl.launchers.EpslRunShortcut"
+            id="it.cnr.istc.keen.epsl.launchers.epslRunShortcut"
+            label="EPSL Planning Problem"
+            modes="run">
+         <contextualLaunch>
+            <enablement>
+               <with
+                     variable="selection">
+                  <count
+                        value="-3)">
+                  </count>
+                  <iterate>
+                     <or>
+                        <test
+                              property="org.eclipse.debug.ui.matchesPattern"
+                              value="*.ddl">
+                        </test>
+                        <test
+                              property="org.eclipse.debug.ui.matchesPattern"
+                              value="*.pdl">
+                        </test>
+                     </or>
+                  </iterate>
+               </with>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
+   </extension>
+
+</plugin>
