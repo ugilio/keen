@@ -34,7 +34,8 @@
             class="it.cnr.istc.keen.epsl.launchers.EpslRunShortcut"
             id="it.cnr.istc.keen.epsl.launchers.epslRunShortcut"
             label="EPSL Planning Problem"
-            modes="run">
+            modes="run"
+            path="/ddl">
          <contextualLaunch>
             <enablement>
                <with
