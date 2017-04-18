@@ -6,7 +6,7 @@ import org.eclipse.core.runtime.CoreException;
 
 public class DdlNature implements IProjectNature {
 
-	public static String ID = "it.cnr.istc.keen.ui.nature.DdlNature"; 
+	public static String ID = "it.cnr.istc.keen.ui.DdlNature";
 	
 	private IProject project;
 

@@ -452,8 +452,8 @@
 		</statusContextViewer>
 	</extension>
  <extension
-       id="DDLNature"
-       name="Keen"
+       id="DdlNature"
+       name="Ddl"
        point="org.eclipse.core.resources.natures">
     <runtime>
        <run
