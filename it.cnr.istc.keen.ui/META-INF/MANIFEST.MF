@@ -21,7 +21,9 @@ Require-Bundle: it.cnr.istc.keen,
  org.eclipse.ltk.core.refactoring,
  org.eclipse.core.resources,
  org.eclipse.core.runtime,
- org.eclipse.xtext.common.types.ui
+ org.eclipse.xtext.common.types.ui,
+ org.eclipse.ui.console,
+ org.eclipse.ui.workbench.texteditor
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: it.cnr.istc.keen.ui.contentassist,
  it.cnr.istc.keen.ui.internal,

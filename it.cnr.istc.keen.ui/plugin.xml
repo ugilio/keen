@@ -429,7 +429,8 @@
 		point="org.eclipse.ui.newWizards">
 		<wizard
         category="it.cnr.istc.keen.ui.ddlcategory"
-        class="it.cnr.istc.keen.ui.DdlExecutableExtensionFactory:it.cnr.istc.keen.ui.wizard.DdlNewProjectWizard"
+        class="it.cnr.istc.keen.ui.DdlExecutableExtensionFactory:it.cnr.istc.keen.ui.wizard.DdlCustomizedNewProjectWizard"
+        finalPerspective="it.cnr.istc.keen.ui.perspective.keenPerspective"
         icon="icons/ddl_project.png"
         id="it.cnr.istc.keen.ui.wizard.DdlNewProjectWizard"
         name="Ddl Project"
@@ -460,5 +461,13 @@
              class="it.cnr.istc.keen.ui.nature.DdlNature">
        </run>
     </runtime>
+ </extension>
+ <extension
+       point="org.eclipse.ui.perspectives">
+    <perspective
+          class="it.cnr.istc.keen.ui.perspective.KeenPerspectiveFactory"
+          id="it.cnr.istc.keen.ui.perspective.keenPerspective"
+          name="Keen">
+    </perspective>
  </extension>
 </plugin>
