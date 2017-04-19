@@ -17,7 +17,9 @@ import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.IStreamsProxy;
 import org.eclipse.ui.console.IOConsole;
 
+import it.cnr.istc.keen.epsl.ConfigurationData;
 import it.cnr.istc.keen.epsl.launchers.BaseEpslProcessMonitor;
+import it.cnr.istc.keen.fbt.FbtExecConfigurationData;
 
 public class FbtExecProcessMonitor extends BaseEpslProcessMonitor
 {
@@ -72,4 +74,9 @@ public class FbtExecProcessMonitor extends BaseEpslProcessMonitor
 
         monitor.worked(1);
     }
+
+	@Override
+	protected ConfigurationData getConfigurationData() {
+		return FbtExecConfigurationData.getInstance();
+	}
 }
