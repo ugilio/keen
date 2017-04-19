@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="it.cnr.istc.keen.Ddl"
+            class="it.cnr.istc.keen.fbt.preferences.FbtExecPreferencesPage"
+            id="it.cnr.istc.keen.fbt.preferences.FbtExecPreferencesPage"
+            name="Installed Fbt Executors">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="it.cnr.istc.keen.fbt.launchers.FbtExecLaunchConfigurationDelegate"
+            id="it.cnr.istc.keen.fbt.launchers.fbt"
+            modes="run"
+            name="Fbt Execution"
+            public="true">
+      </launchConfigurationType>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="it.cnr.istc.keen.fbt.launchers.FbtExecLaunchConfigurationTabGroup"
+            id="it.cnr.istc.keen.fbt.launchers.fbtExecLaunchConfigurationTabGroup"
+            type="it.cnr.istc.keen.fbt.launchers.fbt">
+      </launchConfigurationTabGroup>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            class="it.cnr.istc.keen.fbt.launchers.FbtExecRunShortcut"
+            id="it.cnr.istc.keen.fbt.launchers.fbtExecRunShortcut"
+            label="Fbt Execution"
+            modes="run"
+            path="/ddl">
+         <contextualLaunch>
+            <enablement>
+               <with
+                     variable="selection">
+                  <count
+                        value="-3)">
+                  </count>
+                  <iterate>
+                     <or>
+                        <test
+                              property="org.eclipse.debug.ui.matchesPattern"
+                              value="*.ddl">
+                        </test>
+                        <test
+                              property="org.eclipse.debug.ui.matchesPattern"
+                              value="*.pdl">
+                        </test>
+                     </or>
+                  </iterate>
+               </with>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
+   </extension>
+</plugin>
