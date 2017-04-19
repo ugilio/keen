@@ -41,7 +41,9 @@ public class EpslContainer
     private ArrayList<IEPSLInstall> planners;
     private MultiStatus fStatus;
     
-    public EpslContainer()
+    private ConfigurationData confData;
+    
+    public EpslContainer(ConfigurationData confData)
     {
         dflt = null;
         planners = new ArrayList<IEPSLInstall>();
@@ -72,7 +74,7 @@ public class EpslContainer
     private void addStatus(IStatus status)
     {
         if (fStatus == null)
-            fStatus = new MultiStatus(Activator.PLUGIN_ID, 0, "Installed EPSL Planners", null);
+            fStatus = new MultiStatus(Activator.PLUGIN_ID, 0, confData.get(ConfigurationData.INSTALLED_PLANNERS2), null);
         fStatus.add(status);
     }
     
@@ -96,7 +98,8 @@ public class EpslContainer
         return element;
     }
 
-    private static IEPSLInstall plannerFromXML(Element element, EpslContainer container)
+    private static IEPSLInstall plannerFromXML(Element element, ConfigurationData confData,
+    		EpslContainer container)
     {
         String id = element.getAttribute("id");
         String name = element.getAttribute("name");
@@ -113,13 +116,13 @@ public class EpslContainer
         IStatus status = null;
         if (id.isEmpty())
             status = new Status(IStatus.ERROR,Activator.PLUGIN_ID,
-                    String.format("Planner entry %s was removed because it has no id.",errName)); 
+                    String.format(confData.get(ConfigurationData.ENTRY_REMOVED_1),errName));
         if (name.isEmpty())
             status = new Status(IStatus.ERROR,Activator.PLUGIN_ID,
-                    String.format("Planner entry %s was removed because it has no name.",errName)); 
+                    String.format(confData.get(ConfigurationData.ENTRY_REMOVED_2),errName));
         if (path.isEmpty())
             status = new Status(IStatus.ERROR,Activator.PLUGIN_ID,
-                    String.format("Planner entry %s was removed because it has no installation path.",errName));
+                    String.format(confData.get(ConfigurationData.ENTRY_REMOVED_3),errName));
         
         if (status != null)
         {
@@ -150,7 +153,7 @@ public class EpslContainer
     }
     
     public static void parseXMLIntoContainer(InputStream inputStream,
-            EpslContainer container) throws IOException
+    		ConfigurationData confData, EpslContainer container) throws IOException
     {
         InputStream stream = new BufferedInputStream(inputStream);
 
@@ -193,7 +196,7 @@ public class EpslContainer
                 Element el = (Element) node;
                 if (el.getNodeName().equalsIgnoreCase("planner"))
                 {
-                    IEPSLInstall epsl = plannerFromXML(el, container);
+                    IEPSLInstall epsl = plannerFromXML(el, confData, container);
                     if (epsl == null)
                         continue;
                     if (epsl.getId().equals(defaultID))
@@ -207,7 +210,7 @@ public class EpslContainer
             if (defaultEpsl==null)
                 container.addStatus(new Status(IStatus.ERROR,Activator.PLUGIN_ID,
                 		String.format(
-                        "Default planner with id \"%s\" not found.",defaultID)));
+                        confData.get(ConfigurationData.DEFAULT_PLANNER_NOT_FOUND),defaultID))); //$NON-NLS-1$
             container.setDefault(defaultEpsl);
         }
     }

@@ -7,21 +7,24 @@
  *
  * Contributors:
  *   Giulio Bernardi
+ *   
+ * Inspired by org.eclipse.jdt.internal.debug.ui.jres.JREsUpdater
  */
-package it.cnr.istc.keen.epsl.launchers;
+package it.cnr.istc.keen.epsl;
 
-import it.cnr.istc.keen.epsl.ConfigurationData;
-import it.cnr.istc.keen.epsl.EpslConfigurationData;
+import it.cnr.istc.keen.epsl.launchers.IEpslLaunchConfigurationConstants;
 
-public class EpslRunShortcut extends BaseEpslRunShortcut
+public class EpslPlannersUpdater extends BasePlannersUpdater
 {
-	public EpslRunShortcut() {
-		super();
-		launchConfigurationType = IEpslLaunchConfigurationConstants.ID;
-	}
-
 	@Override
-	protected ConfigurationData getcConfigurationData() {
+	protected ConfigurationData getConfigurationData() {
 		return EpslConfigurationData.getInstance();
 	}
+	
+	@Override
+	protected String getXmlInstallPreferenceKey()
+	{
+		return IEpslLaunchConfigurationConstants.EPSL_INSTALL_XML; 
+	}
+
 }

@@ -20,4 +20,6 @@ public interface IEpslLaunchConfigurationConstants
     public static final String ATTR_QUITPLANNER = ID + ".quitPlanner";
     
     public static final String ATTR_EPSL_INSTALL_PATH = ID +".epslInstallPath";
+    
+	public static final String EPSL_INSTALL_XML = "epslInstallXml";
 }

@@ -14,8 +14,9 @@
 package it.cnr.istc.keen.epsl.wizards;
 
 import it.cnr.istc.keen.epsl.Activator;
+import it.cnr.istc.keen.epsl.BaseEpslRegistry;
+import it.cnr.istc.keen.epsl.ConfigurationData;
 import it.cnr.istc.keen.epsl.EpslInstallImpl;
-import it.cnr.istc.keen.epsl.EpslRegistry;
 import it.cnr.istc.keen.epsl.utils.SWTFactory;
 
 import java.io.File;
@@ -42,9 +43,12 @@ public class StandardEpslPage extends AbstractEpslInstallPage {
 	private Text fPlannerName;
 	private Text fPlannerRoot;
 	private IStatus[] fFieldStatus = new IStatus[1];
-
-	public StandardEpslPage() {
-		super("Add EPSL Installation");
+	
+	private BaseEpslRegistry fEpslRegistry;
+	
+	public StandardEpslPage (ConfigurationData strings) {
+		super(strings);
+		this.fEpslRegistry = strings.getEpslRegistry();
 		for (int i = 0; i < fFieldStatus.length; i++) {
 			fFieldStatus[i] = Status.OK_STATUS;
 		}
@@ -63,13 +67,13 @@ public class StandardEpslPage extends AbstractEpslInstallPage {
 		composite.setLayout(layout);
 		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
 
-		SWTFactory.createLabel(composite, "Planner home:", 1);
+		SWTFactory.createLabel(composite, strings.get(ConfigurationData.PLANNER_HOME), 1);
 		fPlannerRoot = SWTFactory.createSingleText(composite, 1);
 		Button folders = SWTFactory.createPushButton(composite, "Direct&ory...", null);
 		GridData data = (GridData) folders.getLayoutData();
 		data.horizontalAlignment = GridData.END;
 
-		SWTFactory.createLabel(composite, "Planner &name:", 1);
+		SWTFactory.createLabel(composite, strings.get(ConfigurationData.PLANNER_NAME), 1);
 		fPlannerName = SWTFactory.createSingleText(composite, 2);
 
 		fPlannerName.addModifyListener(new ModifyListener() {
@@ -97,7 +101,7 @@ public class StandardEpslPage extends AbstractEpslInstallPage {
 					text = file.getParentFile().getAbsolutePath();
 				}
 				dialog.setFilterPath(text);
-				dialog.setMessage("Select the root directory of the EPSL installation:");
+				dialog.setMessage(strings.get(ConfigurationData.ROOT_DIR));
 				String newPath = dialog.open();
 				if (newPath != null)
 					fPlannerRoot.setText(newPath);
@@ -109,7 +113,7 @@ public class StandardEpslPage extends AbstractEpslInstallPage {
 	}
 
 	private boolean checkEPSLJar(File directory) {
-		File f = new File(directory.getPath(), EpslRegistry.EPSL_JAR_NAME);
+		File f = new File(directory.getPath(), fEpslRegistry.getJarName());
 		return (f.exists() && f.isFile());
 	}
 
@@ -118,21 +122,21 @@ public class StandardEpslPage extends AbstractEpslInstallPage {
 		IStatus s = Status.OK_STATUS;
 		File file = null;
 		if (locationName.length() == 0)
-			s = new Status(IStatus.WARNING, Activator.PLUGIN_ID, "Enter the home directory of the EPSL installation.");
+			s = new Status(IStatus.WARNING, Activator.PLUGIN_ID, strings.get(ConfigurationData.HOME_DIR));
 		else {
 			file = new File(locationName);
 			if (!file.exists())
 				s = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "The home directory does not exist.");
 			else if (!checkEPSLJar(file))
 				s = new Status(IStatus.ERROR, Activator.PLUGIN_ID,
-						String.format("The home directory does not contain %s.", EpslRegistry.EPSL_JAR_NAME));
+						String.format("The home directory does not contain %s.", fEpslRegistry.getJarName()));
 		}
 		if (file != null)
 			fInstallation.setInstallLocation(file);
 		if (s.isOK() && file != null) {
 			String name = fPlannerName.getText();
 			if (name == null || name.trim().length() == 0)
-				fPlannerName.setText("Default EPSL planner");
+				fPlannerName.setText(strings.get(ConfigurationData.DEFAULT));
 		}
 		setPlannerLocationStatus(s);
 		updatePageStatus();
@@ -161,8 +165,8 @@ public class StandardEpslPage extends AbstractEpslInstallPage {
 	public void setSelection(EpslInstallImpl installation) {
 		super.setSelection(installation);
 		fInstallation = installation;
-		setTitle("EPSL Definition");
-		setDescription("Specify attributes for a EPSL installation");
+		setTitle(strings.get(ConfigurationData.DEFINITION));
+		setDescription(strings.get(ConfigurationData.ATTRIBUTES));
 	}
 
 	protected void setFieldValuesToInstall(EpslInstallImpl install) {
@@ -170,14 +174,6 @@ public class StandardEpslPage extends AbstractEpslInstallPage {
 		File file = dir.getAbsoluteFile();
 		install.setInstallLocation(file);
 		install.setName(fPlannerName.getText());
-	}
-
-	protected static String createUniqueId() {
-		String id = null;
-		do {
-			id = String.valueOf(System.currentTimeMillis());
-		} while (EpslRegistry.findById(id) != null);
-		return id;
 	}
 
 	private void initializeFields() {

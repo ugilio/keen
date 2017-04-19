@@ -13,40 +13,24 @@
  *******************************************************************************/
 package it.cnr.istc.keen.epsl.wizards;
 
-import it.cnr.istc.keen.epsl.EpslInstallImpl;
+import it.cnr.istc.keen.epsl.ConfigurationData;
+import it.cnr.istc.keen.epsl.EpslConfigurationData;
 import it.cnr.istc.keen.epsl.IEPSLInstall;
 
-public class AddEpslInstallWizard extends EpslInstallWizard {
-
-	private AbstractEpslInstallPage fAddPage = null;
-
-	private EpslInstallImpl fResult = null;
+public class AddEpslInstallWizard extends BaseAddEpslInstallWizard {
 
 	public AddEpslInstallWizard(IEPSLInstall[] currentInstalls) {
-		super(null, currentInstalls);
-		setForcePreviousAndNextButtons(true);
-		setWindowTitle("Add EPSL Installation");
+		super(currentInstalls);
 	}
 
 	@Override
-	public void addPages() {
-		EpslInstallImpl epsl = new EpslInstallImpl(StandardEpslPage.createUniqueId());
-		epsl.setName("");
-
-		fAddPage = getPage();
-		fAddPage.setSelection(epsl);
-		addPage(fAddPage);
+	protected String getTitle()
+	{
+		return "Add EPSL Installation";
 	}
 
 	@Override
-	public EpslInstallImpl getResult() {
-		return fResult;
-	}
-
-	@Override
-	public boolean performFinish() {
-		boolean finish = fAddPage.finish();
-		fResult = fAddPage.getSelection();
-		return finish;
+	protected ConfigurationData getConfigurationData() {
+		return EpslConfigurationData.getInstance();
 	}
 }

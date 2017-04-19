@@ -16,6 +16,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import it.cnr.istc.keen.epsl.Activator;
+import it.cnr.istc.keen.epsl.ConfigurationData;
 import it.cnr.istc.keen.epsl.utils.ProjectUtils;
 import it.cnr.istc.keen.epsl.utils.SWTFactory;
 import it.cnr.istc.keen.ui.nature.DdlNature;
@@ -63,10 +64,28 @@ public class MainLaunchConfigurationTab extends AbstractLaunchConfigurationTab
     
     private ProjectUtils projectUtils = new ProjectUtils();
     
-    public MainLaunchConfigurationTab()
+    private ConfigurationData confData;
+    
+    public MainLaunchConfigurationTab(ConfigurationData confData)
     {
     	super();
+    	this.confData = confData;
     	Activator.getDefault().getInjector().injectMembers(this);
+    }
+    
+    protected boolean needsPdl()
+    {
+    	return confData.needsPdl();
+    }
+    
+    protected boolean needsClosePlanner()
+    {
+    	return confData.needsClosePlanner();
+    }
+    
+    private boolean needsMiscOptions()
+    {
+    	return needsClosePlanner();
     }
     
     protected void createProjectEditor(Composite parent)
@@ -233,11 +252,14 @@ public class MainLaunchConfigurationTab extends AbstractLaunchConfigurationTab
     {
         Group g = createDlFileEditor(parent, "&Problem Description File:");
         fPdlText = (Text)g.getChildren()[0];
+        if (!needsPdl())
+        	g.setVisible(false);
     }
     
     protected void createArgsEditor(Composite parent)
     {
-        Group group = SWTFactory.createGroup(parent, "Planner &arguments:", 2, 1, GridData.FILL_HORIZONTAL);
+        Group group = SWTFactory.createGroup(parent, confData.get(
+        		ConfigurationData.PLANNER_ARGUMENTS), 2, 1, GridData.FILL_HORIZONTAL);
         fArgsText = SWTFactory.createSingleText(group, 1);
         fArgsText.addModifyListener(new ModifyListener()
         {
@@ -263,6 +285,8 @@ public class MainLaunchConfigurationTab extends AbstractLaunchConfigurationTab
             @Override
             public void widgetDefaultSelected(SelectionEvent e) {}
         });
+        if (!needsMiscOptions())
+        	group.setVisible(false);
     }
     
     @Override
@@ -273,11 +297,13 @@ public class MainLaunchConfigurationTab extends AbstractLaunchConfigurationTab
         createProjectEditor(comp);
         createVerticalSpacer(comp, 1);
         createDdlFileEditor(comp);
-        createVerticalSpacer(comp, 1);
+        if (needsPdl())
+        	createVerticalSpacer(comp, 1);
         createPdlFileEditor(comp);
         createVerticalSpacer(comp, 1);
         createArgsEditor(comp);
-        createVerticalSpacer(comp, 1);
+        if (needsMiscOptions())
+        	createVerticalSpacer(comp, 1);
         createMiscOptions(comp);
         setControl(comp);
     }
@@ -507,7 +533,7 @@ public class MainLaunchConfigurationTab extends AbstractLaunchConfigurationTab
             return false;
         if (!checkValidFile(fDdlText))
             return false;
-        if (!checkValidFile(fPdlText))
+        if (needsPdl() && !checkValidFile(fPdlText))
             return false;
         return true;        
     }

@@ -6,7 +6,7 @@
       <page
             category="it.cnr.istc.keen.Ddl"
             class="it.cnr.istc.keen.epsl.preferences.EPSLPreferencesPage"
-            id="it.cnr.istc.keen.epsl.epsl"
+            id="it.cnr.istc.keen.epsl.preferences.EPSLPreferencesPage"
             name="Installed EPSL Planners">
       </page>
    </extension>

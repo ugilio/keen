@@ -18,6 +18,8 @@ import java.util.List;
 
 import org.eclipse.jface.wizard.Wizard;
 
+import it.cnr.istc.keen.epsl.BaseEpslRegistry;
+import it.cnr.istc.keen.epsl.ConfigurationData;
 import it.cnr.istc.keen.epsl.EpslInstallImpl;
 import it.cnr.istc.keen.epsl.IEPSLInstall;
 
@@ -43,13 +45,20 @@ public abstract class EpslInstallWizard extends Wizard {
 
 	public abstract EpslInstallImpl getResult();
 
+    protected BaseEpslRegistry getEpslRegistry()
+    {
+    	return getConfigurationData().getEpslRegistry();
+    }
+    
+    protected abstract ConfigurationData getConfigurationData();
+    
 	@Override
 	public boolean performFinish() {
 		return getResult() != null;
 	}
 
 	public AbstractEpslInstallPage getPage() {
-		StandardEpslPage standardPage = new StandardEpslPage();
+		StandardEpslPage standardPage = new StandardEpslPage(getConfigurationData());
 		standardPage.setExistingNames(fExistingNames);
 		return standardPage;
 	}

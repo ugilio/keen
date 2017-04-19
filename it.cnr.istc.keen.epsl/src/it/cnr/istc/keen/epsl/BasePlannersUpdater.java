@@ -12,30 +12,39 @@
  */
 package it.cnr.istc.keen.epsl;
 
-import it.cnr.istc.keen.epsl.preferences.Preferences;
-
 import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 
-public class PlannersUpdater {
+import it.cnr.istc.keen.epsl.preferences.Preferences;
+
+public abstract class BasePlannersUpdater {
     private EpslContainer fOriginalPlanners;
 
-    public PlannersUpdater() {
-        fOriginalPlanners = new EpslContainer();
-        IEPSLInstall def = EpslRegistry.getDefault();
+    public BasePlannersUpdater() {
+        fOriginalPlanners = new EpslContainer(getConfigurationData());
+        IEPSLInstall def = getEpslRegistry().getDefault();
         if (def != null) {
             fOriginalPlanners.setDefault(def);
         }
         
-        for (IEPSLInstall epsl : EpslRegistry.getInstalledPlanners())
+        for (IEPSLInstall epsl : getEpslRegistry().getInstalledPlanners())
             fOriginalPlanners.addInstallation(epsl);
     }
+    
+    protected BaseEpslRegistry getEpslRegistry()
+    {
+    	return getConfigurationData().getEpslRegistry();
+    }
+    
+    protected abstract String getXmlInstallPreferenceKey();
+    
+    protected abstract ConfigurationData getConfigurationData();
 
     public boolean updatePlannersSettings(IEPSLInstall[] jres, IEPSLInstall defaultJRE) {
-        EpslContainer newEntries = new EpslContainer();
+        EpslContainer newEntries = new EpslContainer(getConfigurationData());
 
         for (int i = 0; i < jres.length; i++)
             newEntries.addInstallation(jres[i]);
@@ -43,7 +52,7 @@ public class PlannersUpdater {
         newEntries.setDefault(defaultJRE);
 
         savePlannerDefinitions(newEntries);
-        EpslRegistry.setNewPlanners(newEntries);
+        getEpslRegistry().setNewPlanners(newEntries);
 
         return true;
     }
@@ -60,7 +69,7 @@ public class PlannersUpdater {
                     monitor.beginTask("Save planner definitions", 100);
                     String xml = entries.getAsXML();
                     monitor.worked(40);
-                    Preferences.setString(Preferences.EPSL_INSTALL_XML, xml);
+                    Preferences.setString(getXmlInstallPreferenceKey(), xml);
                     monitor.worked(30);
                     //flush preferences?
                     monitor.worked(30);

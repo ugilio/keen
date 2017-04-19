@@ -15,6 +15,8 @@ import org.eclipse.debug.ui.ILaunchConfigurationDialog;
 import org.eclipse.debug.ui.ILaunchConfigurationTab;
 import org.eclipse.jdt.debug.ui.launchConfigurations.JavaJRETab;
 
+import it.cnr.istc.keen.epsl.ConfigurationData;
+import it.cnr.istc.keen.epsl.EpslConfigurationData;
 import it.cnr.istc.keen.epsl.preferences.EPSLTab;
 import it.cnr.istc.keen.epsl.preferences.ForcedConsoleCommonTab;
 
@@ -30,8 +32,9 @@ public class EpslLaunchConfigurationTabGroup extends
     @Override
     public void createTabs(ILaunchConfigurationDialog dialog, String mode)
     {
+    	ConfigurationData confData = EpslConfigurationData.getInstance();
         ILaunchConfigurationTab[] tabs = new ILaunchConfigurationTab[] {
-                new MainLaunchConfigurationTab(),
+                new MainLaunchConfigurationTab(confData),
                 new EPSLTab(),
                 new JavaJRETab(),
                 new ForcedConsoleCommonTab()

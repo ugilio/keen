@@ -13,6 +13,8 @@
  *******************************************************************************/
 package it.cnr.istc.keen.epsl.wizards;
 
+import it.cnr.istc.keen.epsl.ConfigurationData;
+import it.cnr.istc.keen.epsl.EpslConfigurationData;
 import it.cnr.istc.keen.epsl.EpslInstallImpl;
 import it.cnr.istc.keen.epsl.IEPSLInstall;
 
@@ -43,5 +45,10 @@ public class EditEpslInstallWizard extends EpslInstallWizard {
 	@Override
 	public EpslInstallImpl getResult() {
 		return fEditPage.getSelection();
+	}
+	
+	@Override
+	protected ConfigurationData getConfigurationData() {
+		return EpslConfigurationData.getInstance();
 	}
 }

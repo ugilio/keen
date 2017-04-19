@@ -14,6 +14,7 @@
 package it.cnr.istc.keen.epsl.wizards;
 
 import it.cnr.istc.keen.epsl.Activator;
+import it.cnr.istc.keen.epsl.ConfigurationData;
 import it.cnr.istc.keen.epsl.EpslInstallImpl;
 
 import org.eclipse.core.resources.IResource;
@@ -21,7 +22,6 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.IMessageProvider;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 
@@ -31,13 +31,12 @@ public abstract class AbstractEpslInstallPage extends WizardPage {
 	private IStatus fNameStatus = Status.OK_STATUS;
 
 	private String[] fExistingNames;
+	
+	protected ConfigurationData strings;
 
-	protected AbstractEpslInstallPage(String pageName) {
-		super(pageName);
-	}
-
-	protected AbstractEpslInstallPage(String pageName, String title, ImageDescriptor titleImage) {
-		super(pageName, title, titleImage);
+	protected AbstractEpslInstallPage(ConfigurationData strings) {
+		super(strings.get(ConfigurationData.PAGENAME));
+		this.strings = strings;
 	}
 
 	public abstract boolean finish();
@@ -55,15 +54,15 @@ public abstract class AbstractEpslInstallPage extends WizardPage {
 			if (fOriginalName == null || fOriginalName.length() == 0) {
 				sev = IStatus.WARNING;
 			}
-			fNameStatus = new Status(sev, Activator.PLUGIN_ID, "Enter a name for the planner.");
+			fNameStatus = new Status(sev, Activator.PLUGIN_ID, strings.get(ConfigurationData.ENTER_NAME));
 		} else {
 			if (isDuplicateName(newName)) {
-				fNameStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "The planner name is already in use.");
+				fNameStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID, strings.get(ConfigurationData.NAME_USED));
 			} else {
 				IStatus s = ResourcesPlugin.getWorkspace().validateName(newName, IResource.FILE);
 				if (!s.isOK()) {
 					fNameStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID,
-							"Planner name must be a valid file name: " + s.getMessage());
+							strings.get(ConfigurationData.INVALID_FNAME) + s.getMessage());
 				}
 			}
 		}

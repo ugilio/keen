@@ -10,84 +10,31 @@
  */
 package it.cnr.istc.keen.epsl;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
+import it.cnr.istc.keen.epsl.launchers.IEpslLaunchConfigurationConstants;
 
-import it.cnr.istc.keen.epsl.preferences.Preferences;
-
-public class EpslRegistry
+public class EpslRegistry extends BaseEpslRegistry
 {
     public static final String EPSL_JAR_NAME = "epsl-cli.jar";
-    private static EpslContainer container = null;
-    private static Object lock = new Object();
+	
+    private static EpslRegistry instance = new EpslRegistry();
     
-    protected static void setNewPlanners(EpslContainer cont)
+    public static EpslRegistry getInstance()
     {
-        container = cont;
+    	return instance;
     }
     
-    private static void initialize()
+    protected String getPreferencesKey()
     {
-        if (container != null)
-            return;
-        synchronized (lock)
-        {
-            EpslContainer newCont = new EpslContainer();
-            String xml = Preferences.getString(Preferences.EPSL_INSTALL_XML);
-            if (!xml.isEmpty())
-            {
-                try
-                {
-                    ByteArrayInputStream inputStream = new ByteArrayInputStream(xml.getBytes("UTF8"));
-                    EpslContainer.parseXMLIntoContainer(inputStream, newCont);
-                }
-                catch (IOException e) {}
-            }
-            container = newCont;
-        }
+    	return IEpslLaunchConfigurationConstants.EPSL_INSTALL_XML;
     }
-    
-    public static IEPSLInstall[] getInstalledPlanners()
-    {
-        initialize();
-        return container.getPlanners();
-    }
-    
-    public static IEPSLInstall findById(String id)
-    {
-        if (id==null)
-            return null;
-        for (IEPSLInstall epsl : getInstalledPlanners())
-            if (epsl.getId().equals(id))
-                return epsl;
-        return null;
-    }
-    
-    public static IEPSLInstall findByName(String name)
-    {
-        if (name==null)
-            return null;
-        for (IEPSLInstall epsl : getInstalledPlanners())
-            if (epsl.getName().equals(name))
-                return epsl;
-        return null;
-    }
-    
-    public static IEPSLInstall findByPath(String path)
-    {
-        if (path==null)
-            return null;
-        File f = new File(path);
-        for (IEPSLInstall epsl : getInstalledPlanners())
-            if (epsl.getInstallLocation().equals(f))
-                return epsl;
-        return null;
-    }
-    
-    public static IEPSLInstall getDefault()
-    {
-        initialize();
-        return container.getDefault();
-    }
+
+	@Override
+	public String getJarName() {
+		return EPSL_JAR_NAME;
+	}
+
+	@Override
+	protected ConfigurationData getConfigurationData() {
+		return EpslConfigurationData.getInstance();
+	}
 }

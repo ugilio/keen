@@ -16,9 +16,6 @@ import it.cnr.istc.keen.epsl.Activator;
 
 public class Preferences
 {
-	public static final String EPSL_INSTALL_XML = "epslInstallXml";
-	public static final String EPSLEXEC_INSTALL_XML = "epslExecInstallXml";
-	
 	public static String getString(String key)
 	{
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
