@@ -72,7 +72,7 @@ public abstract class BaseEpslProcessMonitor implements Runnable
             
             StatusManager.getManager().handle(new Status(IStatus.ERROR, Activator.PLUGIN_ID,
                     String.format(
-                    		getcoConfigurationData().get(ConfigurationData.EXEC_ERROR),
+                    		getConfigurationData().get(ConfigurationData.EXEC_ERROR),
                             text)),
                             StatusManager.SHOW);
         }
@@ -136,7 +136,7 @@ public abstract class BaseEpslProcessMonitor implements Runnable
             boolean doExit, String exportFile, IStreamsProxy sp, IProgressMonitor monitor,
             IProcess process);
     
-    protected abstract ConfigurationData getcoConfigurationData();
+    protected abstract ConfigurationData getConfigurationData();
     
     protected void beforeThreadStart(Thread t)
     {

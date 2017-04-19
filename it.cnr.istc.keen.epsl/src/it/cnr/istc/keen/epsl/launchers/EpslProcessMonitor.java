@@ -17,6 +17,9 @@ import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.IStreamsProxy;
 import org.eclipse.ui.console.IOConsole;
 
+import it.cnr.istc.keen.epsl.ConfigurationData;
+import it.cnr.istc.keen.epsl.EpslConfigurationData;
+
 public class EpslProcessMonitor extends BaseEpslProcessMonitor
 {
     protected String initCmd;
@@ -86,4 +89,9 @@ public class EpslProcessMonitor extends BaseEpslProcessMonitor
 //            PlatformUI.getWorkbench().getDisplay().asyncExec(
 //                    new VerifierHandler(exportFile));
     }
+
+	@Override
+	protected ConfigurationData getConfigurationData() {
+		return EpslConfigurationData.getInstance();
+	}
 }
