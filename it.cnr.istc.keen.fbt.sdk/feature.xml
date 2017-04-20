@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="it.cnr.istc.keen.fbt.sdk"
+      label="Keen FbT Executor Support"
+      version="1.0.0.qualifier">
+
+   <requires>
+      <import feature="it.cnr.istc.keen.epsl.sdk" version="0.0.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="it.cnr.istc.keen.fbt"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
