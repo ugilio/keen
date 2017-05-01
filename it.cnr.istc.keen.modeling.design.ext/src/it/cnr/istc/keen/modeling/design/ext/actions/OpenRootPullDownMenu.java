@@ -112,7 +112,8 @@ public class OpenRootPullDownMenu extends CompoundContributionItem {
 				if (rc[0]==null)
 				{
 					IEditorPart part = wb.getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-					rc[0]=selectionHelper.getResourceContextFromEditor(part.getEditorInput());
+					if (part!=null)
+						rc[0]=selectionHelper.getResourceContextFromEditor(part.getEditorInput());
 				}
 			}
 		});
