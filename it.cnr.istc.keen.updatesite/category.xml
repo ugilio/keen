@@ -15,6 +15,9 @@
 	<feature url="features/it.cnr.istc.keen.fbt.sdk_0.0.0.jar" id="it.cnr.istc.keen.fbt.sdk" version="0.0.0">
 		<category name="it.cnr.istc.keen"/>
 	</feature>
+	<feature url="features/it.cnr.istc.keen.validation.sdk_0.0.0.jar" id="it.cnr.istc.keen.validation.sdk" version="0.0.0">
+		<category name="it.cnr.istc.keen"/>
+	</feature>
 	<category-def name="it.cnr.istc.keen" label="Keen"/>
 
 	<!-- This is currently ignored by Tycho, see https://bugs.eclipse.org/bugs/show_bug.cgi?id=453708 -->

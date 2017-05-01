@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="it.cnr.istc.keen.validation.sdk"
+      label="Keen Validation"
+      version="1.0.0.qualifier">
+
+   <requires>
+      <import feature="it.cnr.istc.keen.sdk" version="0.0.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="it.cnr.istc.keen.validation"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
