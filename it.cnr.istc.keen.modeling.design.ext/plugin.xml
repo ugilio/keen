@@ -40,10 +40,6 @@
    </extension>
    <extension
          point="org.eclipse.ui.commands">
-      <category
-            id="it.cnr.istc.keen.commands.category"
-            name="Keen">
-      </category>
       <command
             categoryId="it.cnr.istc.keen.commands.category"
             id="it.cnr.istc.keen.commands.openRootCommand"
@@ -68,17 +64,14 @@
          </command>
       </menuContribution>
       <menuContribution
-            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
-         <toolbar
-               id="it.cnr.istc.keen.toolbars.keenToolbar">
-            <command
-                  commandId="it.cnr.istc.keen.commands.openRootCommand"
-                  icon="platform:/plugin/org.eclipse.sirius.diagram.ui/icons/full/obj16/DSemanticDiagram.gif"
-                  id="it.cnr.istc.keen.toolbars.openRootCommand"
-                  style="pulldown"
-                  tooltip="Open Diagram">
-            </command>
-         </toolbar>
+            locationURI="toolbar:it.cnr.istc.keen.toolbars.keenToolbar">
+         <command
+               commandId="it.cnr.istc.keen.commands.openRootCommand"
+               icon="platform:/plugin/org.eclipse.sirius.diagram.ui/icons/full/obj16/DSemanticDiagram.gif"
+               id="it.cnr.istc.keen.toolbars.openRootCommand"
+               style="pulldown"
+               tooltip="Open Diagram">
+         </command>
       </menuContribution>
       <menuContribution
             allPopups="false"

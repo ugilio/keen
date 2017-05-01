@@ -470,4 +470,18 @@
           name="Keen">
     </perspective>
  </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="it.cnr.istc.keen.commands.category"
+            name="Keen">
+      </category>
+ </extension>
+ <extension
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+      <toolbar id="it.cnr.istc.keen.toolbars.keenToolbar"/>
+   </menuContribution>
+ </extension>
 </plugin>
