@@ -31,6 +31,8 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<module>../it.cnr.istc.keen.fbt</module>
 		<module>../it.cnr.istc.keen.fbt.sdk</module>
 
+		<module>../it.cnr.istc.keen.validation</module>
+
 		<module>../it.cnr.istc.keen.updatesite</module>
 		<module>../it.cnr.istc.keen.target</module>
 	</modules>

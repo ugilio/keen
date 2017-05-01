@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Keen EPSL integration
+Bundle-SymbolicName: it.cnr.istc.keen.validation;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: it.cnr.istc.keen.validation.Activator
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.emf.common,
+ org.eclipse.emf.ecore,
+ org.eclipse.core.commands,
+ org.eclipse.equinox.registry,
+ org.eclipse.ui,
+ org.eclipse.ui.workbench,
+ org.eclipse.debug.core,
+ org.eclipse.debug.ui,
+ org.eclipse.swt,
+ org.eclipse.jface,
+ it.cnr.istc.keen,
+ org.eclipse.xtext.ui,
+ org.eclipse.core.expressions;bundle-version="3.5.100"

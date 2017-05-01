@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="it.cnr.istc.keen.Ddl"
+            class="it.cnr.istc.keen.validation.preferences.PreferencesPage"
+            id="it.cnr.istc.keen.validation.preferences.PreferencesPage"
+            name="External Tools">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="it.cnr.istc.keen.validation.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="it.cnr.istc.keen.validation.ValidationView"
+            icon="icons/validate.png"
+            id="it.cnr.istc.keen.validation.ValidationView"
+            name="Domain Validation"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="it.cnr.istc.keen.commands.category"
+            id="it.cnr.istc.keen.validation.validateDomain"
+            name="Validate Domain">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="it.cnr.istc.keen.validation.ValidateCommand"
+            commandId="it.cnr.istc.keen.validation.validateDomain">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+<!--         
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.run?endof=variableGroup">
+         <command
+               commandId="it.cnr.istc.keen.validation.validateDomain"
+               label="Validate Domain"
+               mnemonic="D"
+               style="push">
+         </command>
+      </menuContribution>
+-->
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:it.cnr.istc.keen.toolbars.keenToolbar?after=it.cnr.istc.keen.toolbars.openRootCommand">
+         <command
+               commandId="it.cnr.istc.keen.validation.validateDomain"
+               icon="icons/validate.png"
+               label="Validate Domain"
+               mnemonic="D"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+
+</plugin>
