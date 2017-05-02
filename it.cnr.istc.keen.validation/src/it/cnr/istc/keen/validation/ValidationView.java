@@ -164,7 +164,8 @@ public class ValidationView extends ViewPart {
 			for (ValidationResultElement e : list)
 				if (e.getStatus()==StatusType.OK)
 					ok++;
-			return String.format("%s (%d/%d)",name,ok,list.size());
+			double duration = list.stream().flatMap(v -> Arrays.stream(v.getValues())).collect(Collectors.summingLong(e -> e.duration))/1000d;
+			return String.format("%s (%d/%d) (%.3fs)",name,ok,list.size(),duration);
 		}
 		
 		private String formatComponent(ValidationResultElement element)
@@ -175,7 +176,8 @@ public class ValidationView extends ViewPart {
 			for (int i = 0; i < result.length; i++)
 				if (result[i].status==StatusType.OK)
 					ok++;
-			return String.format("%s (%d/%d)", name,ok,result.length);
+			double duration = Arrays.stream(result).collect(Collectors.summingLong(e -> e.duration)) /1000d; 
+			return String.format("%s (%d/%d) (%.3fs)", name,ok,result.length,duration);
 		}
 		
 		private String formatValue(ValidationResultElement.ResultValue value)
