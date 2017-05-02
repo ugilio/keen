@@ -138,9 +138,11 @@ public class TigaLauncher
 			    {
 				    try(BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream())))
 				    {
+				    	StringBuilder output = new StringBuilder(80*30);
 				        String err = "";
 				        for (String line = br.readLine(); line != null; line = br.readLine())
 				        {
+				        	output.append(String.format("%s%n", line));
 				            //System.out.println("TIGA output: "+line);
 				            err=String.format("%s%n%s",err,line);
 
@@ -148,6 +150,7 @@ public class TigaLauncher
 				                continue;
 				            err="";
 				            line = br.readLine();
+				            output.append(String.format("%s%n", line));
 				            StatusType propStatus = StatusType.ERR;
 				            if (" -- Property is satisfied.".equals(line))
 				            	propStatus = StatusType.OK;
@@ -155,7 +158,7 @@ public class TigaLauncher
 				            	propStatus = StatusType.MAYBE;
 				            else if (" -- Property is NOT satisfied.".equals(line))
 				            	propStatus = StatusType.FAILED;
-				            resultElement.setStatus(valueIdx, propStatus, elapsed);
+				            resultElement.setStatus(valueIdx, propStatus, elapsed, output.toString());
 
 				            //System.out.println(q.timeline.getName()+": "+propStatus.name());
 				        }

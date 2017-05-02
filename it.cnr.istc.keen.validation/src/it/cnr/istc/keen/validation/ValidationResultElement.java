@@ -22,6 +22,7 @@ public class ValidationResultElement
 		public String value;
 		public StatusType status;
 		public long duration;
+		public String output;
 		
 		public ResultValue(String value, boolean status)
 		{
@@ -68,8 +69,13 @@ public class ValidationResultElement
 	
 	public void setStatus(int index, StatusType status, long duration)
 	{
+		setStatus(index, status, duration, null);
+	}
+	public void setStatus(int index, StatusType status, long duration, String output)
+	{
 		values[index].status = status;
 		values[index].duration = duration;
+		values[index].output = status == StatusType.ERR ? output : "";
 	}
 	
 	public StatusType getStatus()

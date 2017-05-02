@@ -11,18 +11,35 @@
 package it.cnr.istc.keen.validation;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 
 import it.cnr.istc.keen.validation.ValidationResultElement.ResultValue;
@@ -34,6 +51,8 @@ public class ValidationView extends ViewPart {
 	public static final String ID = "it.cnr.istc.keen.validation.ValidationView";
 
 	private TreeViewer viewer;
+	private SashForm sash;
+	private Text outputText;
 	private ValidationResult input;
 	private ValidationTopPanel topBar;
 	private ValidationProgressBar progressBar;
@@ -303,8 +322,11 @@ public class ValidationView extends ViewPart {
 				tot++;
 			}
 		input = data;
-		if (viewer != null)
+		if (viewer != null) {
 			viewer.setInput(data);
+			Control c = err==0 ? viewer.getControl() : null;
+			sash.setMaximizedControl(c);
+		}
 		if (topBar != null)
 			topBar.updateInfo(ok, maybe, fail, err);
 		if (progressBar!=null)
@@ -338,14 +360,99 @@ public class ValidationView extends ViewPart {
 		
 		createTopBar(parent);
 		
+		createMainArea(parent);
+	}
+	
+	private void createMainArea(Composite parent)
+	{
+		sash = new SashForm(parent, SWT.HORIZONTAL);
+		sash.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+		
+		createTreeView(sash);
+		
+		createErrorDetail(sash);
+		
+		sash.setWeights(new int[]{50,50});
+		sash.setMaximizedControl(viewer.getControl());
+
+		viewer.addDoubleClickListener(new IDoubleClickListener() {
+			@Override
+			public void doubleClick(DoubleClickEvent event) {
+				//toggle output text visibility
+				Control control = sash.getMaximizedControl();
+				Control tree = viewer.getControl();
+				if (control == tree)
+					sash.setMaximizedControl(null);
+				else
+					sash.setMaximizedControl(tree);
+			}
+		});
+		
+		viewer.addPostSelectionChangedListener(new ISelectionChangedListener() {
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				ISelection sel = event.getSelection();
+				if (sel instanceof IStructuredSelection) {
+					Object o = ((IStructuredSelection)sel).getFirstElement();
+					if ((o instanceof ResultValue))
+					{
+						ResultValue rv = (ResultValue)o;
+						if (rv.status==StatusType.ERR) {
+							outputText.setText(rv.output);
+							return;
+						}
+					}
+				}
+				outputText.setText("");
+			}
+		});
+	}
+	
+	private void createTreeView(Composite parent)
+	{
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
-		viewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));		
 		
 		//drillDownAdapter = new DrillDownAdapter(viewer);
 		viewer.setContentProvider(new ContentProvider());
 		viewer.setLabelProvider(new LabelProvider());
 		viewer.setAutoExpandLevel(2);
 		viewer.setInput(input);
+	}
+	
+	private void createErrorDetail(Composite parent)
+	{
+		Composite c = new Composite(parent, SWT.NONE);
+		GridLayout gridLayout= new GridLayout();
+		gridLayout.marginWidth= 0;
+		gridLayout.marginHeight= 0;
+		gridLayout.numColumns=1;
+		c.setLayout(gridLayout);
+		
+		Label label = new Label(c, SWT.LEFT);
+		label.setText("TIGA Output: ");
+		outputText = new Text(c, SWT.MULTI | SWT.READ_ONLY | SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+		outputText.setFont(JFaceResources.getTextFont());
+		outputText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+		
+		//The following is to auto-hide scrollbars
+		//See http://stackoverflow.com/questions/8547428/how-to-implement-auto-hide-scrollbar-in-swt-text-component
+		Listener scrollBarListener = new Listener () {
+			  @Override
+			  public void handleEvent(Event event) {
+			    Text t = (Text)event.widget;
+			    Rectangle r1 = t.getClientArea();
+			    Rectangle r2 = t.computeTrim(r1.x, r1.y, r1.width, r1.height);
+			    Point p = t.computeSize(SWT.DEFAULT,  SWT.DEFAULT,  true);
+			    t.getHorizontalBar().setVisible(r2.width <= p.x);
+			    t.getVerticalBar().setVisible(r2.height <= p.y);
+			    if (event.type == SWT.Modify) {
+			      t.getParent().layout(true);
+			      t.showSelection();
+			    }
+			  }
+			};
+		outputText.addListener(SWT.Resize, scrollBarListener);
+		outputText.addListener(SWT.Modify, scrollBarListener);		
 	}
 
 	/**
