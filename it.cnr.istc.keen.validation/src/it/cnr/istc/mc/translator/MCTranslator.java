@@ -240,8 +240,8 @@ public class MCTranslator {
 		// Init Value
 		println("  init " + name + ";");
 		println();
-				
-		println("trans");
+
+		boolean firstOne = false;
 		
 		// consistency features
 		int valSize = values.size();
@@ -265,6 +265,10 @@ public class MCTranslator {
 				boolean last = (i == valSize-1) && (cont == numSucc-1);
 				String sep = last ? ";" : ",";
 
+				if (firstOne) {
+					firstOne = false;
+					println("trans");
+				}
 				println("\t" + valueName + arrow + succName + " {guard clock" + tmlName + " >= " + min 
 						+ "; assign clock" + tmlName + " := 0, " + boolValue(tml,succName) + "}"+sep); 
 			}
