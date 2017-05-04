@@ -241,7 +241,7 @@ public class MCTranslator {
 		println("  init " + name + ";");
 		println();
 
-		boolean firstOne = false;
+		boolean firstOne = true;
 		
 		// consistency features
 		int valSize = values.size();
