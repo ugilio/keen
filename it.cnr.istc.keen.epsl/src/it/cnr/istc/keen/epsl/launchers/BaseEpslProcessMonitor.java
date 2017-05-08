@@ -12,6 +12,7 @@ package it.cnr.istc.keen.epsl.launchers;
 
 import it.cnr.istc.keen.epsl.Activator;
 import it.cnr.istc.keen.epsl.ConfigurationData;
+import it.cnr.istc.keen.epsl.extensions.IRunModeExtension;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -133,7 +134,7 @@ public abstract class BaseEpslProcessMonitor implements Runnable
     }
     
     protected abstract void initArgs(String ddlFile, String pdlFile, String planArgs,
-            boolean doExit, String exportFile, IStreamsProxy sp, IProgressMonitor monitor,
+            boolean doExit, IRunModeExtension extHandler, Object extraData, IStreamsProxy sp, IProgressMonitor monitor,
             IProcess process);
     
     protected abstract ConfigurationData getConfigurationData();
@@ -144,14 +145,14 @@ public abstract class BaseEpslProcessMonitor implements Runnable
     }
     
     public BaseEpslProcessMonitor(String ddlFile, String pdlFile, String planArgs,
-            boolean doExit, String exportFile,
+            boolean doExit, IRunModeExtension extHandler, Object extraData,
             IStreamsProxy sp, IOConsole iocon, IProgressMonitor monitor, IProcess process)
     {
         if (iocon!=null)
             this.con = new IOConsoleAdapter(iocon);
         else
             this.con = new IStreamConsoleAdapter(sp);
-        initArgs(ddlFile, pdlFile, planArgs, doExit, exportFile, sp, monitor, process);
+        initArgs(ddlFile, pdlFile, planArgs, doExit, extHandler, extraData, sp, monitor, process);
         
         outMon = new StdoutMonitor();
         errMon = new StderrMonitor();

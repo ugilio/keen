@@ -184,7 +184,8 @@ public abstract class BaseEpslRunShortcut implements ILaunchShortcut
         
         IProject proj = ddl != null ? ddl.getProject() : pdl.getProject();
         
-        if (!(mode.equals("run") || mode.equals("debug") || mode.equals("verify")))
+        boolean isExtension = Activator.getDefault().getExtensions().get(mode) != null;
+        if (!(mode.equals("run") || mode.equals("debug") || isExtension))
             throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID,
                     String.format("Unknown mode: "+mode)));
         
@@ -203,8 +204,7 @@ public abstract class BaseEpslRunShortcut implements ILaunchShortcut
                 mode.equals("debug") ? IDebugUIConstants.ID_DEBUG_LAUNCH_GROUP :
                     IDebugUIConstants.ID_RUN_LAUNCH_GROUP;
         
-        boolean isVerify = mode.equals("verify");
-        int retVal = isVerify ?
+        int retVal = isExtension ?
                 DebugUITools.openLaunchConfigurationPropertiesDialog(getShell(), config,
                         launchGroup) :
                 DebugUITools.openLaunchConfigurationDialog(getShell(), config,
@@ -216,7 +216,7 @@ public abstract class BaseEpslRunShortcut implements ILaunchShortcut
             config.delete();
             return null;
         }
-        if (isVerify)
+        if (isExtension)
             return config;
         //return null because if user clicks "run", it will be run! We don't
         //want to run it twice

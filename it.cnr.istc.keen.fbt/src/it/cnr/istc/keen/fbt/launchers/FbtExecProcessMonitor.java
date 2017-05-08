@@ -18,6 +18,7 @@ import org.eclipse.debug.core.model.IStreamsProxy;
 import org.eclipse.ui.console.IOConsole;
 
 import it.cnr.istc.keen.epsl.ConfigurationData;
+import it.cnr.istc.keen.epsl.extensions.IRunModeExtension;
 import it.cnr.istc.keen.epsl.launchers.BaseEpslProcessMonitor;
 import it.cnr.istc.keen.fbt.FbtExecConfigurationData;
 
@@ -26,9 +27,9 @@ public class FbtExecProcessMonitor extends BaseEpslProcessMonitor
     protected String initCmd;
     protected String execArgs;
 	
-	public FbtExecProcessMonitor(String ddlFile, String pdlFile, String planArgs, boolean doExit, String exportFile,
+	public FbtExecProcessMonitor(String ddlFile, String pdlFile, String planArgs, boolean doExit,
 			IStreamsProxy sp, IOConsole iocon, IProgressMonitor monitor, IProcess process) {
-		super(ddlFile, pdlFile, planArgs, doExit, exportFile, sp, iocon, monitor, process);
+		super(ddlFile, pdlFile, planArgs, doExit, null, null, sp, iocon, monitor, process);
 	}
 
 	@Override
@@ -38,8 +39,9 @@ public class FbtExecProcessMonitor extends BaseEpslProcessMonitor
     }
 
 	@Override
-    protected void initArgs(String ddlFile, String pdlFile, String planArgs, boolean doExit,
-    		String exportFile, IStreamsProxy sp, IProgressMonitor monitor, IProcess process)
+    protected void initArgs(String ddlFile, String pdlFile, String planArgs,
+            boolean doExit, IRunModeExtension extHandler, Object extraData, IStreamsProxy sp, IProgressMonitor monitor,
+            IProcess process)
     {
         this.sp = sp;
         this.monitor = monitor;

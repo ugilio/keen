@@ -17,6 +17,7 @@ import org.eclipse.ui.console.IOConsole;
 
 import it.cnr.istc.keen.epsl.ConfigurationData;
 import it.cnr.istc.keen.epsl.EpslConfigurationData;
+import it.cnr.istc.keen.epsl.extensions.IRunModeExtension;
 
 public class EpslLaunchConfigurationDelegate extends
         BaseEpslLaunchConfigurationDelegate
@@ -28,10 +29,10 @@ public class EpslLaunchConfigurationDelegate extends
 	
 	@Override
     protected void launchProcessMonitor(String ddlFile, String pdlFile,
-    		String planArgs, boolean doExit, String exportFile,
+    		String planArgs, boolean doExit, IRunModeExtension extHandler, Object extraData,
             IStreamsProxy sp, IOConsole iocon, IProgressMonitor monitor, IProcess process)
     {
-        new EpslProcessMonitor(ddlFile, pdlFile, planArgs, doExit, exportFile,
+        new EpslProcessMonitor(ddlFile, pdlFile, planArgs, doExit, extHandler, extraData,
                 sp, iocon, monitor, process);
     }
 }

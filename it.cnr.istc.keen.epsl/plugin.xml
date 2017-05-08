@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="it.cnr.istc.keen.epsl.runmodeext" name="Running mode extension" schema="schema/it.cnr.istc.keen.epsl.runmodeext.exsd"/>
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
@@ -34,7 +35,7 @@
             class="it.cnr.istc.keen.epsl.launchers.EpslRunShortcut"
             id="it.cnr.istc.keen.epsl.launchers.epslRunShortcut"
             label="EPSL Planning Problem"
-            modes="run"
+            modes="run, verify"
             path="/ddl">
          <contextualLaunch>
             <enablement>

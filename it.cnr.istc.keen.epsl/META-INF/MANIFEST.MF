@@ -19,6 +19,7 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: it.cnr.istc.keen.epsl,
+ it.cnr.istc.keen.epsl.extensions,
  it.cnr.istc.keen.epsl.launchers,
  it.cnr.istc.keen.epsl.preferences,
  it.cnr.istc.keen.epsl.wizards

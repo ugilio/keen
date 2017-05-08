@@ -16,6 +16,7 @@ import org.eclipse.debug.core.model.IStreamsProxy;
 import org.eclipse.ui.console.IOConsole;
 
 import it.cnr.istc.keen.epsl.ConfigurationData;
+import it.cnr.istc.keen.epsl.extensions.IRunModeExtension;
 import it.cnr.istc.keen.epsl.launchers.BaseEpslLaunchConfigurationDelegate;
 import it.cnr.istc.keen.fbt.FbtExecConfigurationData;
 
@@ -29,10 +30,9 @@ public class FbtExecLaunchConfigurationDelegate extends
 	
 	@Override
     protected void launchProcessMonitor(String ddlFile, String pdlFile,
-    		String planArgs, boolean doExit, String exportFile,
+    		String planArgs, boolean doExit, IRunModeExtension extHandler, Object extraData,
             IStreamsProxy sp, IOConsole iocon, IProgressMonitor monitor, IProcess process)
     {
-        new FbtExecProcessMonitor(ddlFile, pdlFile, planArgs, doExit, exportFile,
-                sp, iocon, monitor, process);
+        new FbtExecProcessMonitor(ddlFile, pdlFile, planArgs, doExit, sp, iocon, monitor, process);
     }
 }

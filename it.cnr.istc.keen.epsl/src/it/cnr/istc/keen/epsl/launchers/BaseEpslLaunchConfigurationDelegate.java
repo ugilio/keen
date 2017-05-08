@@ -14,6 +14,7 @@ import it.cnr.istc.keen.epsl.Activator;
 import it.cnr.istc.keen.epsl.BaseEpslRegistry;
 import it.cnr.istc.keen.epsl.ConfigurationData;
 import it.cnr.istc.keen.epsl.IEPSLInstall;
+import it.cnr.istc.keen.epsl.extensions.IRunModeExtension;
 
 import java.io.File;
 import java.io.IOException;
@@ -61,7 +62,7 @@ public abstract class BaseEpslLaunchConfigurationDelegate extends
     protected abstract ConfigurationData getConfigurationData();
     
     protected abstract void launchProcessMonitor(String ddlFile, String pdlFile,
-    		String planArgs, boolean doExit, String exportFile,
+    		String planArgs, boolean doExit, IRunModeExtension extHandler, Object extraData,
             IStreamsProxy sp, IOConsole iocon, IProgressMonitor monitor, IProcess process);
     
     private String[] resolveJarClasspath(File jarFile, String cp)
@@ -139,8 +140,8 @@ public abstract class BaseEpslLaunchConfigurationDelegate extends
         return dst;
     }
 
-    protected void doLaunch(ILaunchConfiguration configuration, String mode,
-            String exportFile, ILaunch launch, IProgressMonitor monitor)
+    protected void doLaunch(ILaunchConfiguration configuration, String mode, IRunModeExtension ext,
+            Object extraData, ILaunch launch, IProgressMonitor monitor)
                     throws CoreException
     {
         if (monitor == null)
@@ -205,7 +206,7 @@ public abstract class BaseEpslLaunchConfigurationDelegate extends
             if (monitor.isCanceled())
                 return;
             
-            sendCommands(configuration, exportFile, launch, monitor);
+            sendCommands(configuration, ext, extraData, launch, monitor);
         }
         finally
         {
@@ -217,23 +218,13 @@ public abstract class BaseEpslLaunchConfigurationDelegate extends
     public void launch(ILaunchConfiguration configuration, String mode,
             ILaunch launch, IProgressMonitor monitor) throws CoreException
     {
-        if ("verify".equals(mode))
-            launchVerifier(configuration, launch, monitor);
-        else
-            doLaunch(configuration, mode, null, launch, monitor);
-    }
-    
-    private void launchVerifier(ILaunchConfiguration configuration,
-            ILaunch launch, IProgressMonitor monitor) throws CoreException
-    {
-        String ddl = configuration.getAttribute(IEpslLaunchConfigurationConstants.ATTR_DDL_FILE, "unnamed.ddl");
-        String name = new File(ddl).getName();
-        int idx = name.lastIndexOf('.');
-        if (idx > 0)
-            name = name.substring(0, idx);
-        String exportFile = new File(System.getProperty("java.io.tmpdir"),name).
-                getAbsolutePath();
-        doLaunch(configuration, "run", exportFile, launch, monitor);
+    	IRunModeExtension ext = Activator.getDefault().getExtensions().get(mode);
+    	Object extraData = null;
+    	if (ext != null) {
+    		extraData = ext.computeData(configuration, mode, launch, monitor);
+    		mode="run";
+    	}
+        doLaunch(configuration, mode, ext, extraData, launch, monitor);
     }
     
     private IOConsole findConsole(IProcess target)
@@ -252,7 +243,8 @@ public abstract class BaseEpslLaunchConfigurationDelegate extends
         return null;
     }
     
-    private void sendCommands(ILaunchConfiguration configuration, String exportFile,
+    private void sendCommands(ILaunchConfiguration configuration,
+    		IRunModeExtension extHandler, Object extraData,
             ILaunch launch, final IProgressMonitor monitor) throws CoreException
     {
         String projName = configuration.getAttribute(
@@ -292,7 +284,7 @@ public abstract class BaseEpslLaunchConfigurationDelegate extends
         
         IOConsole con = findConsole(p);
         
-        launchProcessMonitor(ddlFile, pdlFile, planArgs, doExit, exportFile,
+        launchProcessMonitor(ddlFile, pdlFile, planArgs, doExit, extHandler, extraData,
                 sp, con, monitor, p);
     }
 }
