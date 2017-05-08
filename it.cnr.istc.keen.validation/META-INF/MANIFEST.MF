@@ -18,4 +18,5 @@ Require-Bundle: org.eclipse.emf.common,
  org.eclipse.jface,
  it.cnr.istc.keen,
  org.eclipse.xtext.ui,
- org.eclipse.core.expressions;bundle-version="3.5.100"
+ org.eclipse.core.expressions;bundle-version="3.5.100",
+ it.cnr.istc.keen.epsl;bundle-version="1.0.0"

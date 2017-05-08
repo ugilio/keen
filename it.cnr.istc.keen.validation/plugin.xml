@@ -33,9 +33,18 @@
             id="it.cnr.istc.keen.validation.validateDomain"
             name="Validate Domain">
       </command>
+      <command
+            categoryId="it.cnr.istc.keen.commands.category"
+            id="it.cnr.istc.keen.verification.verifyPlan"
+            name="Verify Plan">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
+      <handler
+            class="it.cnr.istc.keen.verification.VerifyCommand"
+            commandId="it.cnr.istc.keen.verification.verifyPlan">
+      </handler>
       <handler
             class="it.cnr.istc.keen.validation.ValidateCommand"
             commandId="it.cnr.istc.keen.validation.validateDomain">
@@ -65,7 +74,21 @@
                mnemonic="D"
                style="push">
          </command>
+         <command
+               commandId="it.cnr.istc.keen.verification.verifyPlan"
+               icon="icons/validate.png"
+               label="Verify Plan"
+               mnemonic="P"
+               style="push">
+         </command>
       </menuContribution>
+   </extension>
+   <extension
+         point="it.cnr.istc.keen.epsl.runmodeext">
+      <runmode
+            class="it.cnr.istc.keen.verification.VerifyRunModeExtension"
+            mode="verify">
+      </runmode>
    </extension>
 
 </plugin>
