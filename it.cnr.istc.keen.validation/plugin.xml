@@ -20,7 +20,7 @@
          point="org.eclipse.ui.views">
       <view
             class="it.cnr.istc.keen.validation.ValidationView"
-            icon="icons/validate.png"
+            icon="icons/validate_domain.png"
             id="it.cnr.istc.keen.validation.ValidationView"
             name="Domain Validation"
             restorable="true">
@@ -69,14 +69,14 @@
             locationURI="toolbar:it.cnr.istc.keen.toolbars.keenToolbar?after=it.cnr.istc.keen.toolbars.openRootCommand">
          <command
                commandId="it.cnr.istc.keen.validation.validateDomain"
-               icon="icons/validate.png"
+               icon="icons/validate_domain.png"
                label="Validate Domain"
                mnemonic="D"
                style="push">
          </command>
          <command
                commandId="it.cnr.istc.keen.verification.verifyPlan"
-               icon="icons/validate.png"
+               icon="icons/verify_plan.png"
                label="Verify Plan"
                mnemonic="P"
                style="push">

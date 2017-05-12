@@ -47,10 +47,9 @@ public class VerifyDialogOK extends TitleAreaDialog
 	{
 	    try
 	    {
-	        InputStream str = getClass().getClassLoader().getResourceAsStream("icons/validate.png");
+	        InputStream str = getClass().getClassLoader().getResourceAsStream("icons/verify_plan.png");
 	        try
 	        {
-	            //return new Image(getParentShell().getDisplay(), "/home/giulio/ercp/it.cnr.istc.pst.keen/icons/validate.png");
 	            return new Image(getParentShell().getDisplay(), str);
 	        }
 	        finally
