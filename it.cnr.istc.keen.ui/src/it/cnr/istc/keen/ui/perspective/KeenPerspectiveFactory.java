@@ -31,6 +31,7 @@ public class KeenPerspectiveFactory implements IPerspectiveFactory {
 
 		IFolderLayout outputfolder= layout.createFolder("bottom", IPageLayout.BOTTOM, (float)0.75, editorArea);
 		outputfolder.addView(IPageLayout.ID_PROBLEM_VIEW);
+		outputfolder.addView(IPageLayout.ID_PROP_SHEET);
 		//outputfolder.addPlaceholder(NewSearchUI.SEARCH_VIEW_ID);
 		outputfolder.addPlaceholder(IConsoleConstants.ID_CONSOLE_VIEW);
 		outputfolder.addPlaceholder(IPageLayout.ID_BOOKMARKS);
@@ -52,9 +53,10 @@ public class KeenPerspectiveFactory implements IPerspectiveFactory {
 		// views - debugging
 		layout.addShowViewShortcut(IConsoleConstants.ID_CONSOLE_VIEW);
 
-		// views - standard workbench
+		// views - standard workbench + properties
 		layout.addShowViewShortcut(IPageLayout.ID_OUTLINE);
 		layout.addShowViewShortcut(IPageLayout.ID_PROBLEM_VIEW);
+		layout.addShowViewShortcut(IPageLayout.ID_PROP_SHEET);
 		layout.addShowViewShortcut(IPageLayout.ID_TASK_LIST);
 		layout.addShowViewShortcut(IPageLayout.ID_PROGRESS_VIEW);
 		layout.addShowViewShortcut(IPageLayout.ID_PROJECT_EXPLORER);
