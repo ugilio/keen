@@ -58,7 +58,7 @@
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
         </containerMappings>
-        <toolSections name="createSection" label="Tools">
+        <toolSections name="createSection" label="Create">
           <ownedTools xsi:type="tool:ContainerCreationDescription" name="domainCreation" label="Domain" precondition="aql:container.oclAsType(ddl::Ddl).domain==null" containerMappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='rootModel']/@defaultLayer/@containerMappings[name='domain']" iconPath="/it.cnr.istc.keen.ui/icons/domain.png">
             <variable name="container"/>
             <viewVariable name="containerView"/>
@@ -423,7 +423,7 @@
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
         </containerMappings>
-        <toolSections name="constraintsSection" label="Tools">
+        <toolSections name="constraintsSection" label="Create">
           <ownedTools xsi:type="tool:EdgeCreationDescription" name="createMeetsRelation" label="Constraint" edgeMappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='TypeConstraints']/@defaultLayer/@edgeMappings[name='meetsRelation']" iconPath="/it.cnr.istc.keen.modeling.design/icons/arrow.png">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
@@ -499,7 +499,7 @@
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
         </containerMappings>
-        <toolSections name="componentSection" label="Tools">
+        <toolSections name="componentSection" label="Create">
           <ownedTools xsi:type="tool:ContainerCreationDescription" name="createComponent" label="Component" containerMappings="//@ownedViewpoints[name='ddl']/@ownedRepresentations[name='componentDiagram']/@defaultLayer/@containerMappings[name='component']" iconPath="/it.cnr.istc.keen.ui/icons/component.png">
             <variable name="container"/>
             <viewVariable name="containerView"/>
@@ -646,7 +646,7 @@
             <labelBorderStyle href="environment:/viewpoint#//@labelBorderStyles/@labelBorderStyleDescriptions.2"/>
           </style>
         </containerMappings>
-        <toolSections name="Tools">
+        <toolSections name="Tools" label="Create">
           <ownedTools xsi:type="tool_1:ToolDescription" name="createSynchHead" label="Trigger" precondition="aql:container.canCreateTrigger(container,containerView)" iconPath="/it.cnr.istc.keen.ui/icons/synchronization.png">
             <element name="element"/>
             <elementView name="elementView"/>
