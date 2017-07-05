@@ -244,6 +244,12 @@ public class MCTranslator {
 		boolean firstOne = true;
 		
 		// consistency features
+
+		//filter out sink states
+		values =
+		values.stream().filter(v -> v.getSuccessors(cf).size()>0).
+		collect(Collectors.toList());
+
 		int valSize = values.size();
 		for (int i = 0; i < valSize; i++)
 		{
