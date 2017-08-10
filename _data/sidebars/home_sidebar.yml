@@ -8,6 +8,6 @@ entries:
   - title: KeeN
     output: web
     folderitems:
-    - title: Unused
+    - title: KeeN
       url: /index.html
       output: web
