@@ -1,0 +1,248 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+
+entries:
+- title: Sidebar
+  product: KeeN User Guide
+#  version: 1.0
+  folders:
+
+  - title:
+    output: pdf
+    type: frontmatter
+    folderitems:
+    - title:
+      url: /titlepage
+      output: pdf
+      type: frontmatter
+    - title:
+      url: /tocpage
+      output: pdf
+      type: frontmatter
+
+  - title: KeeN User Guide
+    output: web
+    folderitems:
+    - title: KeeN User Guide
+      output: web
+      url: /userguide
+  - title: Installation
+    output: web
+    url: /userguide#installation
+    folderitems:
+    - title: Installation
+      output: web
+      url: /userguide#installation
+    - title: Prerequisites
+      output: web
+      url: /userguide#prerequisites
+      folderitems:
+      - title: Prerequisites
+        output: web
+        url: /userguide#prerequisites
+      - title: Basic Requirements
+        output: web
+        url: /userguide#basic-requirements
+      - title: Other Requirements
+        output: web
+        url: /userguide#other-requirements
+    - title: KeeN Installation
+      output: web
+      url: /userguide#keen-installation
+      folderitems:
+      - title: KeeN Installation
+        output: web
+        url: /userguide#keen-installation
+      - title: Addition of the Update Site
+        output: web
+        url: /userguide#addition-of-the-update-site
+      - title: Installation of the Plugins
+        output: web
+        url: /userguide#installation-of-the-plugins
+    - title: Post-installation Settings
+      output: web
+      url: /userguide#post-installation-settings
+  - title: First Steps
+    output: web
+    url: /userguide#first-steps
+    folderitems:
+    - title: First Steps
+      output: web
+      url: /userguide#first-steps
+    - title: An Example Domain
+      output: web
+      url: /userguide#an-example-domain
+    - title: First Customizations
+      output: web
+      url: /userguide#first-customizations
+    - title: A Glance at the Diagram View
+      output: web
+      url: /userguide#a-glance-at-the-diagram-view
+  - title: Traditional Editing
+    output: web
+    url: /userguide#traditional-editing
+    folderitems:
+    - title: Traditional Editing
+      output: web
+      url: /userguide#traditional-editing
+    - title: Projects and Files, Natures and Perspectives
+      output: web
+      url: /userguide#projects-and-files-natures-and-perspectives
+    - title: Toolbars and Menus
+      output: web
+      url: /userguide#toolbars-and-menus
+    - title: Syntax Coloring
+      output: web
+      url: /userguide#syntax-coloring
+    - title: The Outline View
+      output: web
+      url: /userguide#the-outline-view
+    - title: Content Assist
+      output: web
+      url: /userguide#content-assist
+    - title: Formatting
+      output: web
+      url: /userguide#formatting
+    - title: "Refactoring: Rename"
+      output: web
+      url: /userguide#refactoring-rename
+    - title: Errors and Warnings
+      output: web
+      url: /userguide#errors-and-warnings
+    - title: User Settings
+      output: web
+      url: /userguide#user-settings
+    - title: The Example Domain, Continued
+      output: web
+      url: /userguide#the-example-domain-continued
+      folderitems:
+      - title: The Example Domain, Continued
+        output: web
+        url: /userguide#the-example-domain-continued
+      - title: The Components
+        output: web
+        url: /userguide#the-components
+      - title: Renaming the Component Type
+        output: web
+        url: /userguide#renaming-the-component-type
+      - title: Adding Synchronizations
+        output: web
+        url: /userguide#adding-synchronizations
+      - title: The Problem Description File
+        output: web
+        url: /userguide#the-problem-description-file
+      - title: Completing the Example
+        output: web
+        url: /userguide#completing-the-example
+  - title: Graphical Modeling
+    output: web
+    url: /userguide#graphical-modeling
+    folderitems:
+    - title: Graphical Modeling
+      output: web
+      url: /userguide#graphical-modeling
+    - title: A Quick Tour
+      output: web
+      url: /userguide#a-quick-tour
+      folderitems:
+      - title: A Quick Tour
+        output: web
+        url: /userguide#a-quick-tour
+      - title: Switching to Graphical Modeling
+        output: web
+        url: /userguide#switching-to-graphical-modeling
+      - title: Introducing Diagrams
+        output: web
+        url: /userguide#introducing-diagrams
+      - title: Modeling the Basic Concepts
+        output: web
+        url: /userguide#modeling-the-basic-concepts
+      - title: Defining Components and Synchronizations
+        output: web
+        url: /userguide#defining-components-and-synchronizations
+      - title: A Look at the Generated Code
+        output: web
+        url: /userguide#a-look-at-the-generated-code
+    - title: The Diagrams
+      output: web
+      url: /userguide#the-diagrams
+      folderitems:
+      - title: The Diagrams
+        output: web
+        url: /userguide#the-diagrams
+      - title: Anatomy of a Diagram Editor
+        output: web
+        url: /userguide#anatomy-of-a-diagram-editor
+      - title: The Toolbar
+        output: web
+        url: /userguide#the-toolbar
+      - title: The Main View
+        output: web
+        url: /userguide#the-main-view
+      - title: The Domain Model Diagram
+        output: web
+        url: /userguide#the-domain-model-diagram
+      - title: The Transition Constraints Diagram
+        output: web
+        url: /userguide#the-transition-constraints-diagram
+      - title: The Component Diagram
+        output: web
+        url: /userguide#the-component-diagram
+      - title: The Synchronization Diagram
+        output: web
+        url: /userguide#the-synchronization-diagram
+    - title: Advanced Features
+      output: web
+      url: /userguide#advanced-features
+      folderitems:
+      - title: Advanced Features
+        output: web
+        url: /userguide#advanced-features
+      - title: Properties Accessible Through the Properties View Only
+        output: web
+        url: /userguide#properties-accessible-through-the-properties-view-only
+      - title: Usage of Menus
+        output: web
+        url: /userguide#usage-of-menus
+      - title: Layouts
+        output: web
+        url: /userguide#layouts
+      - title: Exporting Images
+        output: web
+        url: /userguide#exporting-images
+  - title: Planning
+    output: web
+    url: /userguide#planning
+    folderitems:
+    - title: Planning
+      output: web
+      url: /userguide#planning
+    - title: Planner Installations
+      output: web
+      url: /userguide#planner-installations
+    - title: Run Configurations
+      output: web
+      url: /userguide#run-configurations
+    - title: Interacting with the Planner
+      output: web
+      url: /userguide#interacting-with-the-planner
+  - title: Executing Plans
+    output: web
+    url: /userguide#executing-plans
+    folderitems:
+    - title: Executing Plans
+      output: web
+      url: /userguide#executing-plans
+  - title: Validation and Verification
+    output: web
+    url: /userguide#validation-and-verification
+    folderitems:
+    - title: Validation and Verification
+      output: web
+      url: /userguide#validation-and-verification
+    - title: Domain Validation
+      output: web
+      url: /userguide#domain-validation
+    - title: Plan Verification
+      output: web
+      url: /userguide#plan-verification
