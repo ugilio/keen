@@ -7,6 +7,8 @@ topnav:
       external_url: https://github.com/ugilio/keen
     - title: Report Issues
       external_url: https://github.com/ugilio/keen/issues
+    - title: Planning
+      url: /intro
     - title: User Guide
       url: /userguide
 

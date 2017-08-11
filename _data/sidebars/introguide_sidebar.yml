@@ -1,0 +1,73 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+
+entries:
+- title: Sidebar
+  product: Timeline-based Planning
+#  version: 1.0
+  folders:
+
+  - title:
+    output: pdf
+    type: frontmatter
+    folderitems:
+    - title:
+      url: /titlepage
+      output: pdf
+      type: frontmatter
+    - title:
+      url: /tocpage
+      output: pdf
+      type: frontmatter
+
+  - title: Introduction
+    output: web
+    folderitems:
+    - title: Introduction
+      output: web
+      url: /intro
+  - title: Timeline-based Planning
+    output: web
+    url: /intro#timeline-based-planning
+    folderitems:
+    - title: Timeline-based Planning
+      output: web
+      url: /intro#timeline-based-planning
+    - title: State Variables
+      output: web
+      url: /intro#state-variables
+    - title: Timelines
+      output: web
+      url: /intro#timelines
+    - title: Complex Interactions
+      output: web
+      url: /intro#complex-interactions
+    - title: The Planner
+      output: web
+      url: /intro#the-planner
+    - title: Synchronization Rules
+      output: web
+      url: /intro#synchronization-rules
+    - title: Temporal Relations
+      output: web
+      url: /intro#temporal-relations
+      folderitems:
+      - title: Temporal Relations
+        output: web
+        url: /intro#temporal-relations
+      - title: Allen's Relations
+        output: web
+        url: /intro#allens-relations
+    - title: Controllability
+      output: web
+      url: /intro#controllability
+    - title: Resources
+      output: web
+      url: /intro#resources
+  - title: The DDL Language
+    output: web
+    url: /intro#the-ddl-language
+    folderitems:
+    - title: The DDL Language
+      output: web
+      url: /intro#the-ddl-language

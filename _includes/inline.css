@@ -1,6 +1,9 @@
     span.sc {
         font-variant: small-caps;
     }
+    .footnote {
+        font-size: small;
+    }
     .post-content figure {
         text-align: center;
     }

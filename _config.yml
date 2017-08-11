@@ -85,6 +85,7 @@ defaults:
 sidebars:
 - home_sidebar
 - userguide_sidebar
+- introguide_sidebar
 
 description: > # this means to ignore newlines
   A Knowledge Engineering ENvironment for Timeline-based Planning.
