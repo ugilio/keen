@@ -28,6 +28,8 @@ mvn package
 ### More Information
 
 [Website](https://ugilio.github.io/keen)
+
 [User Guide](https://ugilio.github.io/keen/userguide)
+
 [Introduction to Timeline-based Planning](https://ugilio.github.io/keen/intro)
 
