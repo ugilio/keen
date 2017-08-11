@@ -4,7 +4,7 @@ hide_sidebar: true
 toc: false
 permalink: index.html
 ---
-KeeN is a **K**nowledge **E**ngineering **EN**vironment for Timeline-based Planning (DDL.3 language). It is based on the [Eclipse](https://www.eclipse.org) platform and is meant to ease the developing of planning domains and problems, both using the traditional features that are expected from a modern Integrated Development Environment and through the graphical modeling of domains by the means of diagrams.
+KeeN is a **K**nowledge **E**ngineering **EN**vironment for [Timeline-based Planning](intro) (DDL.3 language). It is based on the [Eclipse](https://www.eclipse.org) platform and is meant to ease the developing of planning domains and problems, both using the traditional features that are expected from a modern Integrated Development Environment and through the graphical modeling of domains by the means of diagrams.
 
 KeeN supports the so-called *Round-trip Engineering*, permitting the developers to employ the diagram environment also to *edit* existing code, and in general enabling them to seamlessly switch between the code-based and diagram-based views without loss of information.
 
