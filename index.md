@@ -14,7 +14,7 @@ KeeN was developed by Giulio Bernardi at the [Planning and Scheduling Technology
 
 ### Getting Started
 
-To install: add `https://pst.istc.cnr.it/keen/updatesite` as update site to your Eclipse Installation; read the [user guide](usage.md) for more information about installation and for some tutorials.
+To install: add `https://pst.istc.cnr.it/keen/updatesite` as update site to your Eclipse Installation; read the [user guide](userguide.md) for more information about installation and for some tutorials.
 
 ### Building from Source
 
