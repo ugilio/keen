@@ -1,0 +1,50 @@
+/* These rules mimic the ones in syntax.css */
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: white;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata { color: #999988; font-style: italic }
+
+.namespace { color: #555555 }
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted { color: #009999 }
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted { color: #d14 }
+
+.token.atrule,
+.token.attr-value,
+.token.keyword { font-weight: bold }
+
+.token.function { color: #990000; font-weight: bold }
+
+.token.regex,
+.token.important,
+.token.variable { color: #008080 }
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
