@@ -1,5 +1,5 @@
 # KeeN
-KeeN is a **K**nowledge **E**ngineering **EN**vironment for [Timeline-based Planning](https://ugilio.github.io/keen/intro) (DDL.3 language). It is based on the [Eclipse](https://www.eclipse.org) platform and is meant to ease the developing of planning domains and problems, both using the traditional features that are expected from a modern Integrated Development Environment and through the graphical modeling of domains by the means of diagrams.
+KeeN is a **K**nowledge **E**ngineering **EN**vironment for [Timeline-based Planning](https://ugilio.github.io/keen/intro) ([DDL.3 language](https://ugilio.github.io/keen/ddl)). It is based on the [Eclipse](https://www.eclipse.org) platform and is meant to ease the developing of planning domains and problems, both using the traditional features that are expected from a modern Integrated Development Environment and through the graphical modeling of domains by the means of diagrams.
 
 KeeN supports the so-called *Round-trip Engineering*, permitting the developers to employ the diagram environment also to *edit* existing code, and in general enabling them to seamlessly switch between the code-based and diagram-based views without loss of information.
 
@@ -32,4 +32,6 @@ mvn package
 [User Guide](https://ugilio.github.io/keen/userguide)
 
 [Introduction to Timeline-based Planning](https://ugilio.github.io/keen/intro)
+
+[DDL Language Reference](https://ugilio.github.io/keen/ddl)
 
