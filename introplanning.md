@@ -191,9 +191,8 @@ Resource actions can be used in synchronization rules in the same way of state v
 For example, consider the case of a car which can advance for 20 km while consuming 1 liter of fuel; the car is modeled with a state variable, having among its values `Advance(x)`, where `x` is the distance traveled, in meters; the car’s fuel tank is modeled as a consumable resource where its amount is expressed in milliliters; a synchronization might be written on `Advance(x)` containing a constraint `EQUALS fuelTank.consumption(x/20)`. This constraint’s purpose is twofold: for one, it expresses the precondition for the tank to contain at least x/20 milliliters of fuel for the car to be able to advance; and, it makes the fuel tank actually decrease its amount if the car really advances. Note the usage of the `EQUALS` temporal relation, to mean that the token representing the consumption of fuel starts and ends at the same moments in which the token representing the advancing of the car do: in other words, that advancement and consumption happen simultaneously. 
 
 ## The DDL Language
-The concepts explained in this guide need to be expressed in a planning language. The language that <span class="sc">KeeN</span> targets is called "DDL.3": a detailed explanation of the language is outside of the scopes of this guide: the reader should be able to understand the examples in the [KeeN User Guide](userguide), and to use <span class="sc">KeeN</span>, by just having a general understanding of Timeline-based planning, as explained here.
-
-<!-- If needed, a reference of the DDL language in EBNF form can be found here -->
+The concepts explained in this guide need to be expressed in a planning language. The language that <span class="sc">KeeN</span> targets is called "[DDL.3](ddl)": a detailed explanation of the language is outside of the scopes of this guide: the reader should be able to understand the examples in the [KeeN User Guide](userguide), and to use <span class="sc">KeeN</span>, by just having a general understanding of Timeline-based planning, as explained here.
+If needed, a reference of the DDL language in EBNF form can be found [here](ddl).
 
 -----
 <span class="footnote" id="note1">[1] To be precise we should say that a timeline describes the temporal evolution of a <em>component</em>, thus including resources too <a href="#note1back">↩</a>.</span>
